@@ -37,8 +37,8 @@ app.use('/users', users);
 app.use('/authorization', authorization);
 app.use('/authSocial', authSocial);
 
-app.get("/getSession", function(req,res){    
-   res.send(req.session); 
+app.get('/getSession', function(req,res){    
+    res.send(req.session); 
 });
 
 app.use(function(req, res, next) {
