@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html ng-app="authorizationApp">
+    <head>
+        <title>Instructions</title>
+        <meta charset="utf-8">
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>    
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+        <link rel="stylesheet" href="stylesheets/authorization.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="stylesheets/bootstrap-social-gh-pages/bootstrap-social.css">
+        <script src="javascripts/authorization.js"></script>
+    </head>
+    <body ng-controller="authorizationCtrl">
+        <div class="container authorization col-xs-12 col-sm-12 col-md-12 col-lg-6">
+            <div class="aaaa" id="alertRegist" style="display: none">
+                <div class="alert alert-info alert-dismissible fade show" role="alert">
+                    <button type="button" class="close" onclick="closeAlertRegist();">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                    <strong>Письмо отправлено на Вашу почту.</strong> Подтвердите регистрацию.
+                </div>                
+            </div>
+            <div class="card">
+                <h4 class="card-header">Авторизация на сайте</h4>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-6 col-md-6 separator">
+                            <form role="form" action="/users/signIn" method="post">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-user fa-lg" aria-hidden="true"></i></span>
+                                    <input id="signInEmail" type="text" name="email" class="form-control" placeholder="email пользователя" />
+                                </div>
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-unlock-alt fa-lg" aria-hidden="true"></i></span>
+                                    <input name="password" id="signInPassword" type="password" class="form-control" placeholder="Ваш пароль" required />
+                                </div>
+                                <p>
+                                У вас нет аккаунта? <a href="#" data-toggle="modal" data-target="#exampleModal">Регистрация</a>
+                                <button class="btn btn-outline-success" style="margin-top:10px"><i class="fa fa-sign-in"></i> Войти</button>
+                            </form>
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6 soc">
+                            <a class="btn btn-block btn-social btn-vk" href="/authSocial/auth/vkontakte">
+                                <span class="fa fa-vk"></span> Войти с помощью VK
+                            </a>
+                            <a class="btn btn-block btn-social btn-facebook" href="/auth/facebook">
+                                <span class="fa fa-facebook"></span>Войти с помощью Facebook
+                            </a>
+                            <a class="btn btn-block btn-social btn-twitter" href="/authSocial/twitter/login">
+                                <span class="fa fa-twitter"></span> Войти с помощью Twitter
+                            </a>      
+                        </div>                         
+                    </div>                   
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+
+<!-- Modal Registration-->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Регистрация</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group row">
+                        <label for="inputFirstName" class="col-sm-2 col-form-label">Имя</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputFirstName" placeholder="Имя пользователя">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputLastName" class="col-sm-2 col-form-label">Фамилия</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputLastName" placeholder="Фамилия пользователя">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
+                        <div class="col-sm-10">
+                            <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputPassword" class="col-sm-2 col-form-label">Пароль</label>
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control" id="inputPassword" placeholder="Пароль">
+                        </div>
+                    </div> 
+                    <div class="form-group row">
+                        <label for="inputPassword2" class="col-sm-2 col-form-label">Пароль</label>
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control" id="inputPassword2" placeholder="Введите ещё раз">
+                        </div>
+                    </div>             
+                  </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-primary" onclick="regist();">Зарегистрироваться</button>
+                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Отмена</button>
+            </div>
+        </div>
+    </div>
+</div>

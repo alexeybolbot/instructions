@@ -1,0 +1,66 @@
+<!doctype html>
+<html ng-app="instructionsApp" ng-controller="instructionsCtrl">
+    <head>
+        <title>Instructions</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href={{style}}>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+        <script src="javascripts/index.js"></script>    
+    </head>
+    <body class="night">
+        <nav class="navbar navbar-expand-md navbar-{{styleNavbar}} navbarIndex night-l">
+            <div class="container">
+                <a class="navbar-brand" href="/">
+                    <b class="icon">i</b> Instructions
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarText">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">Публикации <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Пользователи</a>
+                        </li>
+                    </ul>
+                    <li class="nav-item dropdown">
+                        <i class="fa fa-cog mr-sm-2 settings" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Настройки"></i>
+                        <div class="dropdown-menu night-l" aria-labelledby="navbarDropdownMenuLink">                            
+                            <div>
+                                <label>
+                                    RU
+                                    <input type="radio" class="option-input radio" name="example" checked />
+                                </label>
+                                <label>
+                                    <input type="radio" class="option-input radio" name="example" />
+                                    EN
+                                </label>
+                                <br>
+                                <label class="sunmoon">
+                                    <i class="fa fa-sun-o" aria-hidden="true"></i>
+                                    <input type="radio" class="option-input radio" name="sunmoon" id="sun" ng-click="changeOfStyle('sun');"/>
+                                </label>
+                                <label>
+                                    <input type="radio" class="option-input radio" name="sunmoon" id="moon" ng-click="changeOfStyle('moon');"/>
+                                    <i class="fa fa-moon-o" aria-hidden="true"></i>
+                                </label>                            
+                            </div>   
+                            
+                        </div>
+                    </li>
+                    <a class="signIn" href="/authorization">Войти</a>
+                </div>
+            </div>
+        </nav>       
+        
+        
+        
+    </body>
+</html>
