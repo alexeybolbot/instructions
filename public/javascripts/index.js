@@ -28,6 +28,12 @@ angular.module('instructionsApp', [])
             if(timesOfDay == "moon"){
                 $scope.style = "stylesheets/styleNight.css";
                 $scope.styleNavbar = "dark";
-            }      
+            }
+            saveStyle(timesOfDay);
         };
+        
+        function saveStyle(timesOfDay){
+            $http.post('users/saveStyle', {id:$scope.data.idUser, timesOfDay:timesOfDay});
+        }
+        
     });
