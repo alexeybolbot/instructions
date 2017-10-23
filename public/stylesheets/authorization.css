@@ -15,3 +15,17 @@
 }
 
 .soc{color: white;}
+
+.icon{
+    border: 2px solid red;
+    border-radius: 5px;
+    padding: 2px 10px;
+    font-family: ALGERIAN;
+    background-color: red;
+    color: white;
+}
+
+.navbarIndex{
+    background-color: white;
+    border-bottom: 1px solid #d5dddf;
+}

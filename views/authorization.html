@@ -14,6 +14,13 @@
         <script src="javascripts/authorization.js"></script>
     </head>
     <body ng-controller="authorizationCtrl">
+        <nav class="navbar navbar-expand-md navbar-light navbarIndex night-l">
+            <div class="container">
+                <a class="navbar-brand" href="/">
+                    <b class="icon">i</b> Instructions
+                </a>
+            </div>
+        </nav>        
         <div class="container authorization col-xs-12 col-sm-12 col-md-12 col-lg-6">
             <div class="aaaa" id="alertRegist" style="display: none">
                 <div class="alert alert-info alert-dismissible fade show" role="alert">
@@ -24,7 +31,7 @@
                 </div>                
             </div>
             <div class="card">
-                <h4 class="card-header">Авторизация на сайте</h4>
+                <h4 class="card-header" style="vertical-align: middle">Авторизация на сайте</h4>
                 <div class="card-body">
                     <div class="row">
                         <div class="col-xs-6 col-sm-6 col-md-6 separator">
@@ -39,7 +46,7 @@
                                 </div>
                                 <p>
                                 У вас нет аккаунта? <a href="#" data-toggle="modal" data-target="#exampleModal">Регистрация</a>
-                                <button class="btn btn-outline-success" style="margin-top:10px"><i class="fa fa-sign-in"></i> Войти</button>
+                                <button class="btn btn-outline-success" style="margin-top:10px"><i class="fa fa-sign-in"></i> Войти</button>                                
                             </form>
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6 soc">
