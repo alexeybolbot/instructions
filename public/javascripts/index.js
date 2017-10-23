@@ -9,6 +9,8 @@ angular.module('instructionsApp', [])
         $http.get('getSession').then(function mySucces(response) {
             if(response.data.idUser)
                 dataSetUp(response);
+            else if(response.data.style)
+                styleSetUp(response);
         }, function myError(response) {
             console.log(response.statusText);
         });        
@@ -16,6 +18,10 @@ angular.module('instructionsApp', [])
         function dataSetUp(response){
             $scope.checkAuth = true;
             $scope.data = response.data;
+            styleSetUp(response);    
+        }
+        
+        function styleSetUp(response){
             $scope.changeOfStyle(response.data.style);
             document.getElementById(response.data.style).checked = true;        
         }
@@ -25,7 +31,7 @@ angular.module('instructionsApp', [])
                 $scope.style = "stylesheets/style.css";
                 $scope.styleNavbar = "light";
             }
-            if(timesOfDay == "moon"){
+            else if(timesOfDay == "moon"){
                 $scope.style = "stylesheets/styleNight.css";
                 $scope.styleNavbar = "dark";
             }
@@ -33,7 +39,10 @@ angular.module('instructionsApp', [])
         };
         
         function saveStyle(timesOfDay){
-            $http.post('users/saveStyle', {id:$scope.data.idUser, timesOfDay:timesOfDay});
+            if($scope.checkAuth)
+                $http.post('users/saveStyle', {id:$scope.data.idUser, timesOfDay:timesOfDay});
+            else
+                $http.post('users/saveStyle', {timesOfDay:timesOfDay});
         }
         
     });

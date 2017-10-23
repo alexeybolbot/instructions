@@ -6,9 +6,13 @@ var con = connection.Connection;
 
 router.post('/saveStyle', function(req,res){
     req.session.style = req.body.timesOfDay;
-    con.query('UPDATE user SET ? WHERE id = "'+req.body.id+'"', {style:req.body.timesOfDay}, function(err, result){
-        req.session.save(); 
-    });
+    if(req.session.idUser){
+        con.query('UPDATE user SET ? WHERE id = "'+req.body.id+'"', {style:req.body.timesOfDay}, function(err, result){
+            req.session.save(); 
+        });
+    }
+    else
+        req.session.save();
     res.send(req.session.style);
 });
 
