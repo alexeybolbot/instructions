@@ -3,16 +3,22 @@ angular.module('instructionsApp', [])
         
         $scope.style = "stylesheets/style.css";
         $scope.styleNavbar = "light";
-        
+        $scope.checkAuth = false;
+        $scope.data = null;
+
         $http.get('getSession').then(function mySucces(response) {
-            $scope.changeOfStyle(response.data.style);
-            document.getElementById(response.data.style).checked = true;
-            console.log(response.data);
+            if(response.data.idUser)
+                dataSetUp(response);
         }, function myError(response) {
             console.log(response.statusText);
         });        
         
-        
+        function dataSetUp(response){
+            $scope.checkAuth = true;
+            $scope.data = response.data;
+            $scope.changeOfStyle(response.data.style);
+            document.getElementById(response.data.style).checked = true;        
+        }
         
         $scope.changeOfStyle = function(timesOfDay){
             if(timesOfDay == "sun"){

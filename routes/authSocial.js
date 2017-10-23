@@ -71,7 +71,7 @@ function insertUser(req, res){
 }
 
 function sessionSetup(req, res, result){
-    req.session.id = result[0].id;
+    req.session.idUser = result[0].id;
     req.session.familyName = result[0].familyName;  
     req.session.email = result[0].email; 
     req.session.password = result[0].password; 

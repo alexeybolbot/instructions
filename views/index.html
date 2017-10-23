@@ -45,7 +45,7 @@
                                 <br>
                                 <label class="sunmoon">
                                     <i class="fa fa-sun-o" aria-hidden="true"></i>
-                                    <input type="radio" class="option-input radio" name="sunmoon" id="sun" ng-click="changeOfStyle('sun');"/>
+                                    <input type="radio" class="option-input radio" name="sunmoon" id="sun" ng-click="changeOfStyle('sun');" checked/>
                                 </label>
                                 <label>
                                     <input type="radio" class="option-input radio" name="sunmoon" id="moon" ng-click="changeOfStyle('moon');"/>
@@ -55,7 +55,8 @@
                             
                         </div>
                     </li>
-                    <a class="signIn" href="/authorization">Войти</a>
+                    <a class="signIn" href="/authorization" ng-show="!data">Войти</a>
+                    <img src="{{data.photo}}" style="height: 30px;" ng-show="data">
                 </div>
             </div>
         </nav>       
