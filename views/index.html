@@ -52,16 +52,20 @@
                                     <i class="fa fa-moon-o" aria-hidden="true"></i>
                                 </label>                            
                             </div>   
-                            
                         </div>
                     </li>
-                    <a class="signIn" href="/authorization" ng-show="!data">Войти</a>
-                    <img src="{{data.photo}}" style="height: 30px;" ng-show="data">
+                    <div class="btn-group">
+                        <a class="signIn" href="/authorization" ng-show="!data">Войти</a>
+                        <img src="{{data.photo}}" style="height: 30px;" ng-show="data" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="{{data.familyName}}">
+                        <div class="dropdown-menu night-l navbarDropdownProfile">                            
+                            <a class="dropdown-item" href="#">Профиль</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Выход</a>   
+                        </div>                        
+                    </div>                   
                 </div>
             </div>
         </nav>       
-        
-        
         
     </body>
 </html>
