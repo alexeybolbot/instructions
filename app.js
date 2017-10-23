@@ -10,8 +10,8 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 var authorization = require('./routes/authorization');
 var authSocial = require('./routes/authSocial');
+var exit = require('./routes/exit');
 
-var auth = require('./public/json/auth');
 var options = require('./public/javascripts/dbOptions');
 
 var app = express();
@@ -36,6 +36,7 @@ app.use('/', index);
 app.use('/users', users);
 app.use('/authorization', authorization);
 app.use('/authSocial', authSocial);
+app.use('/exit', exit);
 
 app.get('/getSession', function(req,res){    
     res.send(req.session); 
