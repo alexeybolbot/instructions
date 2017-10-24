@@ -45,7 +45,7 @@
                                     <input name="password" id="signInPassword" type="password" class="form-control" placeholder="Ваш пароль" required />
                                 </div>
                                 <p>
-                                    У вас нет аккаунта? <a href="#" data-toggle="modal" data-target="#exampleModal">Регистрация</a>
+                                    У вас нет аккаунта? <a href="#" data-toggle="modal" data-target="#modalRegist">Регистрация</a>
                                 </p>
                                 <div class="form-check">
                                     <label class="form-check-label">
@@ -93,7 +93,7 @@
 </div>
 
 <!-- Modal Registration-->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalRegist" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -137,7 +137,7 @@
                   </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-outline-primary" onclick="regist();">Зарегистрироваться</button>
+                <button type="button" class="btn btn-outline-primary" ng-click="regist()">Зарегистрироваться</button>
                 <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Отмена</button>
             </div>
         </div>
