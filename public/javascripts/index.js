@@ -6,7 +6,7 @@ angular.module('instructionsApp', [])
         $scope.checkAuth = false;
         $scope.data = null;
 
-        $http.get('getSession').then(function mySucces(response) {
+        $http.get('session/getSession').then(function mySucces(response) {
             if(response.data.idUser)
                 dataSetUp(response);
             else if(response.data.style)

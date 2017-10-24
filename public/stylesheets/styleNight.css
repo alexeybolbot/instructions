@@ -8,11 +8,11 @@
     color: white;
 }
 
-.night-l a{
+.night-l .dropdown-item{
     color: hsl(0, 0%, 63%);
 }
 
-.night-l a:hover{
+.night-l .dropdown-item:hover{
     color: white;
     background: rgb(35, 35, 35);
 }

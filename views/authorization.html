@@ -45,27 +45,52 @@
                                     <input name="password" id="signInPassword" type="password" class="form-control" placeholder="Ваш пароль" required />
                                 </div>
                                 <p>
-                                У вас нет аккаунта? <a href="#" data-toggle="modal" data-target="#exampleModal">Регистрация</a>
+                                    У вас нет аккаунта? <a href="#" data-toggle="modal" data-target="#exampleModal">Регистрация</a>
+                                </p>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" class="form-check-input">
+                                        Запомнить меня
+                                    </label>
+                                </div>                                
                                 <button class="btn btn-outline-success" style="margin-top:10px"><i class="fa fa-sign-in"></i> Войти</button>                                
                             </form>
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6 soc">
-                            <a class="btn btn-block btn-social btn-vk" href="/authSocial/auth/vkontakte">
+                            <a class="btn btn-block btn-social btn-vk" ng-click="tuneLink('authSocial/auth/vkontakte')">
                                 <span class="fa fa-vk"></span> Войти с помощью VK
                             </a>
                             <a class="btn btn-block btn-social btn-facebook" href="/auth/facebook">
                                 <span class="fa fa-facebook"></span>Войти с помощью Facebook
                             </a>
-                            <a class="btn btn-block btn-social btn-twitter" href="/authSocial/twitter/login">
+                            <a class="btn btn-block btn-social btn-twitter"  ng-click="tuneLink('authSocial/twitter/login')">
                                 <span class="fa fa-twitter"></span> Войти с помощью Twitter
                             </a>      
                         </div>                         
                     </div>                   
                 </div>
             </div>
-        </div>
+        </div>        
     </body>
 </html>
+
+<!-- Modal RememberMe-->
+<div class="modal fade" id="modalRememberMe" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Запомнить меня</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>       
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-primary" ng-click="auth(true)">Запомнить</button>
+                <button type="button" class="btn btn-outline-danger" ng-click="auth(false)">Не запоминать</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- Modal Registration-->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

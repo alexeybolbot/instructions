@@ -10,7 +10,7 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 var authorization = require('./routes/authorization');
 var authSocial = require('./routes/authSocial');
-var exit = require('./routes/exit');
+var sessionActions = require('./routes/session');
 
 var options = require('./public/javascripts/dbOptions');
 
@@ -36,11 +36,7 @@ app.use('/', index);
 app.use('/users', users);
 app.use('/authorization', authorization);
 app.use('/authSocial', authSocial);
-app.use('/exit', exit);
-
-app.get('/getSession', function(req,res){    
-    res.send(req.session); 
-});
+app.use('/session', sessionActions);
 
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
