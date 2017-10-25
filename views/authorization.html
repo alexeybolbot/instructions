@@ -13,21 +13,22 @@
         <link rel="stylesheet" href="stylesheets/bootstrap-social-gh-pages/bootstrap-social.css">
         <script src="javascripts/authorization.js"></script>
     </head>
-    <body ng-controller="authorizationCtrl">
+    <body ng-controller="authorizationCtrl">        
         <nav class="navbar navbar-expand-md navbar-light navbarIndex night-l">
             <div class="container">
                 <a class="navbar-brand" href="/">
                     <b class="icon">i</b> Instructions
                 </a>
             </div>
-        </nav>        
+        </nav>       
         <div class="container authorization col-xs-12 col-sm-12 col-md-12 col-lg-6">
-            <div class="aaaa" id="alertRegist" style="display: none">
+            <div id="alertRegist">
                 <div class="alert alert-info alert-dismissible fade show" role="alert">
-                    <button type="button" class="close" onclick="closeAlertRegist();">
-                      <span aria-hidden="true">&times;</span>
+                    <button type="button" class="close" ng-click="hideAlertRegist()">
+                        <span aria-hidden="true">&times;</span>
                     </button>
-                    <strong>Письмо отправлено на Вашу почту.</strong> Подтвердите регистрацию.
+                    <!--<strong>Письмо отправлено на Вашу почту.</strong> Подтвердите регистрацию.-->
+                    {{alertRegist}}
                 </div>                
             </div>
             <div class="card">
@@ -53,7 +54,7 @@
                                         Запомнить меня
                                     </label>
                                 </div>                                
-                                <button class="btn btn-outline-success" style="margin-top:10px"><i class="fa fa-sign-in"></i> Войти</button>                                
+                                <button class="btn btn-outline-success btnSignIn"><i class="fa fa-sign-in"></i> Войти</button>                                
                             </form>
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6 soc">

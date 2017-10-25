@@ -29,8 +29,10 @@ router.post('/saveStyle', function(req,res){
 
 router.post('/regist', function(req,res){   
     con.query('SELECT * FROM user WHERE email="'+req.body.email+'"', function(err, result) {
-        if(result.length == 0)
+        if(result.length == 0){
             sendEmail(req);
+            res.send(200);
+        }
         else 
             res.send("passwordIsBusy");
     });
