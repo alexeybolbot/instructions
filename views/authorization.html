@@ -36,7 +36,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-xs-6 col-sm-6 col-md-6 separator">
-                            <form role="form" action="/users/signIn" method="post">
+                            <form role="form">
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-user fa-lg" aria-hidden="true"></i></span>
                                     <input id="signInEmail" type="text" name="email" class="form-control" placeholder="email пользователя" />
@@ -48,13 +48,9 @@
                                 <p>
                                     У вас нет аккаунта? <a href="#" data-toggle="modal" data-target="#modalRegist">Регистрация</a>
                                 </p>
-                                <div class="form-check">
-                                    <label class="form-check-label">
-                                        <input type="checkbox" class="form-check-input">
-                                        Запомнить меня
-                                    </label>
-                                </div>                                
-                                <button class="btn btn-outline-success btnSignIn"><i class="fa fa-sign-in"></i> Войти</button>                                
+                                <input type="checkbox" ng-model="rememberMe" id="checkRememberMe"/> Запомнить меня
+                                <br>
+                                <button class="btn btn-outline-success btnSignIn" ng-click="signIn()"><i class="fa fa-sign-in"></i> Войти</button> 
                             </form>
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6 soc">
@@ -71,7 +67,7 @@
                     </div>                   
                 </div>
             </div>
-        </div>        
+        </div>
     </body>
 </html>
 

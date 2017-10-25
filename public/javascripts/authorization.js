@@ -3,6 +3,7 @@ angular.module('authorizationApp', [])
         
         $scope.alertRegist = "Письмо отправлено на Вашу почту. Подтвердите регистрацию";
         
+        
         $(document).ready(function() {
             $scope.hideAlertRegist(); 
         });
@@ -37,13 +38,13 @@ angular.module('authorizationApp', [])
             var email = $('#inputEmail').val();
             var password = $('#inputPassword').val();
             var password2 = $('#inputPassword2').val();
-            
-            var resultDataChecking = dataChecking(firstName, lastName, email, password, password2);
-            if(resultDataChecking)
-                sendingOfDataForRegistration(firstName, lastName, email, password, password2);
+                       
+            var resultDataCheckingRegist = dataCheckingRegist(firstName, lastName, email, password, password2);
+            if(resultDataCheckingRegist)
+                sendingOfDataForRegistration(firstName, lastName, email, password);
         };
         
-        function dataChecking(firstName, lastName, email, password, password2){
+        function dataCheckingRegist(firstName, lastName, email, password, password2){
             if(firstName == "" || lastName == "" || email == "" || password == "" || password2 == ""){
                 alert("Введите данные");
                 return false;
@@ -55,20 +56,53 @@ angular.module('authorizationApp', [])
             return true;
         };
         
-        function sendingOfDataForRegistration(firstName, lastName, email, password, password2){
+        function sendingOfDataForRegistration(firstName, lastName, email, password){
             $('#modalRegist').modal('hide');
             $http.post('users/regist',{familyName:firstName + " " + lastName, email:email, password:password}).then(function mySucces(response) {
-                console.log(response.data);
                 tuningTextAlertRegist(response);
                 showAlertRegist();
-            }, function myError(response) {
-                $scope.alertRegist = "Неверный Email";
-                showAlertRegist();
+            }, function myError(response){
+                setUpAndShowAlertRegist("Неверный Email");
             });            
         };
         
         function tuningTextAlertRegist(response){
             $scope.alertRegist = (response.data != "OK") ? "Пароль занят" : "Письмо отправлено на Вашу почту. Подтвердите регистрацию";         
+        };
+       
+        $scope.signIn = function(){
+            var email = $('#signInEmail').val();
+            var password = $('#signInPassword').val();     
+            var resultDataCheckingSignIn = dataCheckingSignIn(email, password);
+            if(resultDataCheckingSignIn)
+                sendingOfDataForSignIn(email, password);
+        };  
+        
+        function dataCheckingSignIn(email, password){
+            if(email == "" || password == ""){
+                alert("Введите данные");
+                return false;
+            }
+            return true;
+        };
+        
+        function sendingOfDataForSignIn(email, password){
+            $http.post('users/signIn',{email:email, password:password}).then(function mySucces(response) {
+                if(response.data == 0) 
+                    setUpAndShowAlertRegist("Потдвердите регистрацию на вашей почте");
+                else if(response.data == 2){
+                    if($scope.rememberMe)
+                        $http.post('session/rememberMe');
+                }
+                window.location = "http://localhost:3000/";
+            }, function myError(response) {
+                setUpAndShowAlertRegist("Неверно введены данные");
+            });            
+        };
+        
+        function setUpAndShowAlertRegist(text){
+            $scope.alertRegist = text;
+            showAlertRegist();        
         };
        
     });

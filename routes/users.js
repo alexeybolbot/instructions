@@ -74,4 +74,30 @@ router.get("/verification/:st", function(req,res){
     });     
 });
 
+router.post('/signIn', function(req, res) {     
+    con.query('SELECT * FROM user WHERE email="'+req.body.email+'" and password="'+req.body.password+'"', function(err, result) {
+        if(result.length != 0){
+            if(result[0].status == 2)
+                sessionSetup(req, res, result);            
+            res.send(""+result[0].status);
+        }else{
+            res.send(400);
+        };
+    });
+});
+
+function sessionSetup(req, res, result){
+    req.session.idUser = result[0].id;
+    req.session.familyName = result[0].familyName;  
+    req.session.email = result[0].email; 
+    req.session.password = result[0].password; 
+    req.session.photo = result[0].photo; 
+    req.session.idSocial = result[0].idSocial;
+    req.session.status = result[0].status;
+    req.session.style = result[0].style;
+    req.session.language = result[0].language;
+    req.session.save();
+    //res.redirect('/');
+};
+
 module.exports = router;
