@@ -59,12 +59,16 @@ angular.module('authorizationApp', [])
             $('#modalRegist').modal('hide');
             $http.post('users/regist',{familyName:firstName + " " + lastName, email:email, password:password}).then(function mySucces(response) {
                 console.log(response.data);
-                if(response.data != "OK")
-                    $scope.alertRegist = "Пароль занят";
+                tuningTextAlertRegist(response);
                 showAlertRegist();
             }, function myError(response) {
-                console.log(response.statusText);
+                $scope.alertRegist = "Неверный Email";
+                showAlertRegist();
             });            
+        };
+        
+        function tuningTextAlertRegist(response){
+            $scope.alertRegist = (response.data != "OK") ? "Пароль занят" : "Письмо отправлено на Вашу почту. Подтвердите регистрацию";         
         };
        
     });

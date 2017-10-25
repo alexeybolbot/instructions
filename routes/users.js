@@ -29,45 +29,49 @@ router.post('/saveStyle', function(req,res){
 
 router.post('/regist', function(req,res){   
     con.query('SELECT * FROM user WHERE email="'+req.body.email+'"', function(err, result) {
-        if(result.length == 0){
-            sendEmail(req);
-            res.send(200);
-        }
+        if(result.length == 0)
+            sendEmail(req, res);
         else 
             res.send("passwordIsBusy");
     });
 });
 
-function sendEmail(req){
+function sendEmail(req, res){
     var secretToken = randomstring.generate() + req.body.email;
-    var url = "http://localhost:3000/verification/"+secretToken;
+    var url = "http://localhost:3000/users/verification/"+secretToken;
 
     var mailOptions = {
         from: mail.user,
         to: req.body.email,
-        subject: 'Подтверждение регистрации',
-        html: '<h1>Перейдите по ссылке, для завершения регистрации.</h1>\n\
-              <p><a href="'+url+'">Подтвердить!!!</a></p>'
+        subject: 'Confirmation of registration',
+        html: '<h1>Follow the link to complete registration.</h1>\n\
+               <h1>After that you will have to enter your login data.</h1>\n\
+               <p><a href="'+url+'">Confirm!!!</a></p>'
     };
 
     var obj = req.body;
     obj.status = 0;
     obj.secretToken  = secretToken;
-    
-    con.query('INSERT INTO user SET ?', obj, function(err, result) {});
 
-    transporterSendMail(mailOptions);
+    transporterSendMail(res, mailOptions, obj);
         
 };
 
-function transporterSendMail(mailOptions){
+function transporterSendMail(res, mailOptions, obj){
     transporter.sendMail(mailOptions, function(error, info){
         if (error) {
-            console.log(error);
+            res.send(400);
         } else {
-            console.log('Email sent: ' + info.response);
+            con.query('INSERT INTO user SET ?', obj, function(err, result) {});
+            res.send(200);
         }
     });    
 };
+
+router.get("/verification/:st", function(req,res){    
+    con.query('UPDATE user SET ? WHERE secretToken = "'+req.params.st+'"', {status:2}, function(err, result){
+        res.redirect('/authorization');      
+    });     
+});
 
 module.exports = router;
