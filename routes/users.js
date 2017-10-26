@@ -97,7 +97,6 @@ function sessionSetup(req, res, result){
     req.session.style = result[0].style;
     req.session.language = result[0].language;
     req.session.save();
-    //res.redirect('/');
 };
 
 module.exports = router;
