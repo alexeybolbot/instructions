@@ -1,1 +1,117 @@
-{{text}}
+<div class="container cont cont-wrIn">
+    <div class="row">
+        <div class="col-md-9 createInstruction" ng-show="showCreateInstructionOrPreview">
+            <div id="alertPublishInstruction">
+                <div class="alert alert-info alert-dismissible fade show" role="alert">
+                    <button type="button" class="close" ng-click="hideAlertPublishInstruction()">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    Публикация добавлена.
+                </div>                
+            </div>
+            <label>Заголовок:</label>
+            <input type="text" class="form-control" ng-model="headingInput1">
+            <div class="description">Заголовок должен быть наполнен смыслом, чтобы можно было понять, о чем будет публикация.</div>
+            <br>
+            <label>Краткое описание:</label>
+            <input type="text" class="form-control" ng-model="shortDescriptionInput1">
+            <br>        
+            <label>Превью:</label>
+            <input type="text" class="form-control" id="previewInput1" ng-model="previewInput1" ng-click="preview()">
+            <div class="description">Изображение, дающее представление о содержании инструкции.</div>
+            <br>
+            <label>Тема:</label>
+            <select class="form-control" ng-model="subjectSelect1">
+                <option>Электроника</option>
+                <option>Досуг и быт</option>
+            </select>
+            <br>    
+            <label>Тэги:</label>
+            <datalist id="tagsList">
+                <option ng-repeat="tag in tags">{{tag}}</option>
+            </datalist>
+            <input type="text" class="form-control" list="tagsList" ng-model="selectionTag">
+            <div class="description"><span class="badge badge-dark btnAddTag" ng-click="addTag()">Добавить</span> Укажите от 1 до 5 тэгов.</div>
+            <span ng-repeat="selectedTag in selectedTags">
+                <span class="badge badge-secondary">{{selectedTag}}&nbsp;&nbsp;&nbsp;&nbsp;<a class="trashTag" ng-click="deleteTag(selectedTag)"><i class="fa fa-trash-o" aria-hidden="true"></i></a></span>
+            </span>                                                
+            <br>        
+            <label>Текст:</label>
+            <textarea id="text"></textarea>
+            <br>
+            <div class="buttons blue_buttons_panel">
+                <input type="submit" class="btn_blue_buttons_panel" name="submit" ng-click="publishInstruction()" value="Опубликовать">
+                <input type="button" class="btn_blue_buttons_panel" ng-click="getFullPostPreview()" value="Предпросмотр">
+            </div>
+            <div class="row">
+                <article class="col-md-9" style="padding: 30px"></article>
+            </div>
+        </div>
+        <div class="col-md-9" ng-show="!showCreateInstructionOrPreview">
+            <button type="button" class="btn btn-outline-info" ng-click="backward()"><i class="fa fa-long-arrow-left" aria-hidden="true"></i> Назад</button>
+            <br><br>
+            <div class="collapsed-form-FullPreview">
+                <h4>Вид публикации в свернутом формате</h4>
+                <a>
+                    <img class="image-mini" src={{data.photo}}>
+                    <span class="user-info__nickname">{{data.familyName}}</span>                
+                </a>
+                <span class="post__time">{{datePublished}}</span>
+                <h1 class="post_title_tex">{{headingInput1}}</h1>
+                <span ng-repeat="selectedTag in selectedTags">
+                    <span class="tags">{{selectedTag}}</span>
+                </span>
+                <br><br>
+                <img src={{previewInput1}}>
+                <br><br>
+                <p>{{shortDescriptionInput1}}</p>
+                <button type="button" class="btn btn-outline-info">Читать дальше <i class="fa fa-long-arrow-right" aria-hidden="true"></i></button>
+                <br>                
+            </div>
+            <br>
+            <h4>Вид публикации в развёрнутом формате</h4>
+            <a>
+                <img class="image-mini" src={{data.photo}}>
+                <span class="user-info__nickname">{{data.familyName}}</span>                
+            </a>
+            <span class="post__time">{{datePublished}}</span>            
+            <h1 class="post_title_tex">{{headingInput1}}</h1>
+            <article id="FullPreview"></article>
+            <hr>
+            <span ng-repeat="selectedTag in selectedTags">
+                <span class="tags">{{selectedTag}}</span>
+            </span>
+            <br><br>
+        </div>
+        <div class="col-md-3 ">
+            <div class="default-block default-block_sidebar">
+                <div class="default-block__header">
+                    <span class="default-block__header-title">О создании инструкции</span>
+                </div>
+                <div class="default-block__content sidebar-block">
+                    <p class="sidebar-block__paragraph">При создании и редактировании инструкции, нажимайте кнопку "Предпросмотр", чтобы видеть текущий результат.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="DragAndDropImage" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content DragAndDropImage">
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <div ngf-drop ngf-select ng-model="files" class="drop-box" 
+                ngf-drag-over-class="'dragover'" ngf-multiple="true" ngf-allow-dir="true"
+                accept="image/*" ngf-pattern="'image/*'">
+                    <img src="https://d30y9cdsu7xlg0.cloudfront.net/png/49665-200.png">
+                    <p><b>Drop images here or click to upload</b></p></div>
+                <div id="progressUploadImage">
+                    <div id="barUploadImage"></div>
+                </div>
+             </div>
+        </div>
+    </div>
+</div>

@@ -20,6 +20,16 @@ app.config(function($routeProvider) {
     $scope.checkAuth = false;
     $scope.data = null;
 
+    var config = {
+        apiKey: "AIzaSyBjdb8e9r1BjW1w_oD4E1fiJpYPcn4yVsM",
+        authDomain: "instructions-44e7c.firebaseapp.com",
+        databaseURL: "https://instructions-44e7c.firebaseio.com",
+        projectId: "instructions-44e7c",
+        storageBucket: "instructions-44e7c.appspot.com",
+        messagingSenderId: "737777061823"
+    };
+    firebase.initializeApp(config); 
+
     $http.get('session/getSession').then(function mySucces(response) {
         if(response.data.idUser)
             dataSetUp(response);

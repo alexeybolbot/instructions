@@ -11,6 +11,7 @@ var users = require('./routes/users');
 var authorization = require('./routes/authorization');
 var authSocial = require('./routes/authSocial');
 var sessionActions = require('./routes/session');
+var instruction = require('./routes/instruction');
 
 var options = require('./public/javascripts/dbOptions');
 
@@ -37,6 +38,7 @@ app.use('/users', users);
 app.use('/authorization', authorization);
 app.use('/authSocial', authSocial);
 app.use('/session', sessionActions);
+app.use('/instruction', instruction);
 
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
