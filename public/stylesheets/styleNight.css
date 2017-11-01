@@ -25,3 +25,8 @@
 table, tr, td, th{
    border: 1px solid white; 
 }
+
+hr{
+    color: #333333;
+    background-color: #333333;
+}

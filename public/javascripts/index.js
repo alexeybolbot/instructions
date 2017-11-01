@@ -1,7 +1,8 @@
 var app = angular.module('indexApp', [
     "ngRoute",
     "instructions",
-    "writeInstruction"
+    "writeInstruction",
+    "getInstruction"
 ]);
 
 app.config(function($routeProvider) {
@@ -11,14 +12,20 @@ app.config(function($routeProvider) {
     }).when("/write", {
         templateUrl : "/html/writeInstruction.html",
         controller : "writeInstructionCtrl"
+    }).when('/instruction/:id',{
+        templateUrl:'html/instruction.html',
+        controller:'getInstructionCtrl' 
     });
     
-}).controller('indexCtrl', function($scope, $http) {
-        
+}).controller('indexCtrl', function($rootScope, $scope, $http) {
+         
     $scope.style = "stylesheets/style.css";
     $scope.styleNavbar = "light";
     $scope.checkAuth = false;
     $scope.data = null;
+    $rootScope.hub = "all";
+    $rootScope.tab = "last";
+    $rootScope.name = "";  
 
     var config = {
         apiKey: "AIzaSyBjdb8e9r1BjW1w_oD4E1fiJpYPcn4yVsM",

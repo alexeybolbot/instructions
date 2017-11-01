@@ -303,8 +303,7 @@ angular.module("writeInstruction",['ngFileUpload'])
                     subject : $scope.subjectSelect1,
                     tags : $scope.selectedTags.join(),
                     text : simplemde.value(),
-                    idUserFK : $scope.data.idUser,
-                    date : getDate()
+                    idUserFK : $scope.data.idUser
                 };
                 $http.post('instruction/add',obj).then(function mySucces(response) {
                     showAlertPublishInstruction();

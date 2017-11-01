@@ -356,3 +356,26 @@ a{
 table{
     margin-bottom: 20px;
 }
+
+.tabs-menu a{
+    font-weight: 500;
+    font-family: 'Fira Sans',sans-serif;
+    text-transform: uppercase;
+    margin-right: 30px;
+    padding: 19px 0;
+}
+
+.tabs-menu-active{
+    border-bottom: 2px solid #77a8d0;
+}
+.tabs-menu a span:hover{
+    color: #4d80aa;
+}
+
+.tabs-menu-active span{
+    color: #4d80aa;
+}
+
+.tabs-menu-not-active span{
+    color: #6f7577;
+}

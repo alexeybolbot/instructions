@@ -4,6 +4,32 @@ var router = express.Router();
 var connection = require('../public/javascripts/mysql');
 var con = connection.Connection;
 
+router.post('/', function(req, res, next) {
+    var sql = tuningSqlScript(req);
+    con.query(sql,function(err, result) {
+        res.send(result);
+    });   
+});
+
+function tuningSqlScript(req){
+    if(req.body.hub == "all" && req.body.tab == "last")
+        return "select * from instructions left join user on instructions.idUserFK = user.idUser ORDER BY instructions.date DESC LIMIT 10";
+    else if(req.body.hub == "all" && req.body.tab == "best")
+        return "select * from instructions left join user on instructions.idUserFK = user.idUser ORDER BY instructions.rating DESC LIMIT 10";
+    else if(req.body.hub == "tag" && req.body.tab == "last")
+        return "select * from tags left join instructions on tags.idInstructionFK = instructions.idInstruction \n\
+                left join user on instructions.idUserFK = user.idUser where tags.tag='"+req.body.name+"' ORDER BY instructions.date DESC LIMIT 10";
+    else if(req.body.hub == "tag" && req.body.tab == "best")
+        return "select * from tags left join instructions on tags.idInstructionFK = instructions.idInstruction \n\
+                left join user on instructions.idUserFK = user.idUser where tags.tag='"+req.body.name+"' ORDER BY instructions.rating DESC LIMIT 10";    
+    else if(req.body.hub == "tag" && req.body.tab == "last")
+        return "select * from instructions left join user on instructions.idUserFK = user.idUser \n\
+                where instructions.subject='"+req.body.name+"' ORDER BY instructions.date DESC LIMIT 10";
+    else if(req.body.hub == "tag" && req.body.tab == "last")
+        return "select * from instructions left join user on instructions.idUserFK = user.idUser \n\
+                where instructions.subject='"+req.body.name+"' ORDER BY instructions.rating DESC LIMIT 10";    
+}
+
 router.post('/add', function(req, res, next) {
     con.query('INSERT INTO instructions SET ?', req.body, function(err, result) {
         addTags(req.body, result.insertId, res);
