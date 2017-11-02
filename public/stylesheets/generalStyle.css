@@ -379,3 +379,37 @@ table{
 .tabs-menu-not-active span{
     color: #6f7577;
 }
+
+#b-comments-reply__editable{
+    margin-top: 50px;
+    width: 100%;
+    height: 100px;
+}
+
+.comment-section__head-title{
+    font-weight: 500;
+    font-size: 22px;
+    font-family: 'Fira Sans',sans-serif;
+}
+
+.comments{
+    margin-bottom: 100px;
+}
+
+.notComments{
+    color: grey;
+}
+
+.commentsList{
+    width: 100%;
+    resize: none;
+    border: none;
+}
+
+.commentHead{
+    margin-bottom: 5px;
+}
+
+.contentComment{
+    margin-bottom: 20px;
+}

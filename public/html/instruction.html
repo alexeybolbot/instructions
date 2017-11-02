@@ -1,1 +1,42 @@
-{{test}}
+<div class="container cont">
+    <div class="row">
+        <div class="col-md-9">
+            <a>
+                <img class="image-mini" src={{instruction.photo}}>
+                <span class="user-info__nickname">{{instruction.familyName}}</span>                
+            </a>
+            <span class="post__time">{{instruction.date}}</span>
+            <br><br>
+            <button id="cmd" ng-click="generatePDF()">Generate PDF</button>
+            <div id="content">
+                <h1 class="post_title_tex">{{instruction.heading}}</h1>
+                <article id="FullPreview"></article>
+                </div>
+            <hr>
+            <span ng-repeat="selectedTag in instruction.tags">
+                <span class="tags">{{selectedTag}}</span>
+            </span>                
+            <br><br>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-9 comments">
+            <textarea id="b-comments-reply__editable" ng-model="comment"></textarea>
+            <button type="button" class="btn btn-outline-info navwrite" ng-click="addComment()">Отправить</button>
+            <br><br>
+            <span class="comment-section__head-title">Комментарии</span>
+            <hr>
+            <span class="notComments" ng-show="!checkComments">Нет комментариев</span>
+            <div ng-repeat="comm in comments" class="contentComment">
+                <div class="commentHead">
+                    <a>
+                        <img class="image-mini" src={{comm.photo}}>
+                        <span class="user-info__nickname">{{comm.familyName}}</span>               
+                    </a>
+                    <span class="post__time">{{comm.date}}</span>
+                </div>
+                <textarea id="commentsList{{comm.idComments}}" class="commentsList" readonly>{{comm.text}}</textarea>
+            </div>
+        </div>
+    </div>    
+</div>

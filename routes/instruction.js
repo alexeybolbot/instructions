@@ -50,4 +50,19 @@ router.get('/tags', function(req, res, next) {
     });
 });
 
+router.get("/getById/:id", function(req,res){
+    con.query('select * from instructions left join user on instructions.idUserFK = user.idUser \n\
+        where instructions.idInstruction="'+req.params.id+'"', function(err, result){
+        res.send(result);
+    });     
+});
+
+router.get("/getCommentsById/:id", function(req,res){
+    con.query('select * from comments left join user on comments.idUserFK = user.idUser \n\
+    join instructions on comments.idInsructionFK = instructions.idInstruction \n\
+    where instructions.idInstruction="'+req.params.id+'" order by comments.dateComment', function(err, result){
+        res.send(result);
+    });     
+});
+
 module.exports = router;

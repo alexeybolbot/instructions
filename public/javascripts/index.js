@@ -25,8 +25,8 @@ app.config(function($routeProvider) {
     $scope.data = null;
     $rootScope.hub = "all";
     $rootScope.tab = "last";
-    $rootScope.name = "";  
-
+    $rootScope.name = "";
+    
     var config = {
         apiKey: "AIzaSyBjdb8e9r1BjW1w_oD4E1fiJpYPcn4yVsM",
         authDomain: "instructions-44e7c.firebaseapp.com",
@@ -75,5 +75,12 @@ app.config(function($routeProvider) {
         else
             $http.post('users/saveStyle', {timesOfDay:timesOfDay});
     }
+    
+    $scope.getDate = function(date){
+        var now = new Date(date);
+        var hours = (now.getHours() < 10) ? '0' + now.getHours() : now.getHours();
+        var minutes = (now.getMinutes() < 10) ? '0' + now.getMinutes() : now.getMinutes();
+        return now.getDate()+"-"+(now.getMonth()+1)+"-"+now.getFullYear()+" "+hours+":"+minutes;
+    };
 
 });

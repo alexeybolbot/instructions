@@ -6,3 +6,7 @@
 table, tr, td, th{
    border: 1px solid grey; 
 }
+
+.com{
+    border-top: 1px solid #d5dddf;
+}

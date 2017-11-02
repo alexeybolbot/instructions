@@ -1,6 +1,8 @@
 var express = require('express');
 var session = require('express-session');
 var SessionStore = require('express-mysql-session');
+var server = require('http').Server(app);
+var io = require('socket.io')(server);
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
@@ -14,6 +16,8 @@ var sessionActions = require('./routes/session');
 var instruction = require('./routes/instruction');
 
 var options = require('./public/javascripts/dbOptions');
+var ac = require('./public/javascripts/addComment');
+var addComment = ac.AddComment;
 
 var app = express();
 
@@ -39,6 +43,14 @@ app.use('/authorization', authorization);
 app.use('/authSocial', authSocial);
 app.use('/session', sessionActions);
 app.use('/instruction', instruction);
+
+server.listen(80);
+
+io.on('connection', function (socket) {
+    socket.on('addComment', function (data) {
+        addComment(data, io);
+    });
+});
 
 app.use(function(req, res, next) {
     var err = new Error('Not Found');

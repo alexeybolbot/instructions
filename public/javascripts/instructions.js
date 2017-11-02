@@ -7,19 +7,12 @@ angular.module("instructions",[])
             $http.post('instruction/',{hub:$scope.hub, tab:$scope.tab, name:$scope.name}).then(function mySucces(response) {
                 $scope.instructions = response.data.map(function(instruction) {
                     instruction.tags = instruction.tags.split(',');
-                    instruction.date = getDate(instruction.date);                
+                    instruction.date = $scope.getDate(instruction.date);                
                     return instruction;
                 });
             });               
         }
-        
-        function getDate(date){
-            var now = new Date(date);
-            var hours = (now.getHours() < 10) ? '0' + now.getHours() : now.getHours();
-            var minutes = (now.getMinutes() < 10) ? '0' + now.getMinutes() : now.getMinutes();
-            return now.getDate()+"-"+(now.getMonth()+1)+"-"+now.getFullYear()+" "+hours+":"+minutes;
-        }    
-        
+                
         $(document).ready(function() {;
             tuningStyleTabs($rootScope.tab);
             getInstructions();

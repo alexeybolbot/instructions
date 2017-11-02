@@ -9,15 +9,8 @@ angular.module("writeInstruction",['ngFileUpload'])
         $scope.selectedTags = [];
         $scope.showCreateInstructionOrPreview = true;
         
-        $scope.datePublished = getDate();
+        $scope.datePublished = $scope.getDate(new Date());
         
-        function getDate(){
-            var now = new Date();
-            var hours = (now.getHours() < 10) ? '0' + now.getHours() : now.getHours();
-            var minutes = (now.getMinutes() < 10) ? '0' + now.getMinutes() : now.getMinutes();
-            return now.getDate()+"-"+(now.getMonth()+1)+"-"+now.getFullYear()+" "+hours+":"+minutes;
-        }
-
         function getTags(){
             $http.get('instruction/tags').then(function mySucces(response) {
                 setTags(response.data);
@@ -37,7 +30,7 @@ angular.module("writeInstruction",['ngFileUpload'])
             });       
         }
         
-        $(document).ready(function() {;
+        $(document).ready(function() {
             $scope.hideAlertPublishInstruction();
             getTags();
             installMarkdown();
