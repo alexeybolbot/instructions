@@ -9,7 +9,7 @@ var addComment = function(data, socket){
 }
 
 function getCommentsById(id, io){
-    con.query('select * from comments left join user on comments.idUserFK = user.idUser \n\
+    con.query('select * from comments left join user on comments.idUserCommentsFK = user.idUser \n\
     where comments.idComments="'+id+'"', function(err, result){
         io.sockets.emit('comment', result[0]);
     });

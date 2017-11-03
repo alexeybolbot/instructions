@@ -30,3 +30,8 @@ hr{
     color: #333333;
     background-color: #333333;
 }
+
+.commentsList{
+    background: rgb(17, 17, 17);
+    color: white;
+}

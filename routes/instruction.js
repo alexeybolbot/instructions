@@ -58,11 +58,58 @@ router.get("/getById/:id", function(req,res){
 });
 
 router.get("/getCommentsById/:id", function(req,res){
-    con.query('select * from comments left join user on comments.idUserFK = user.idUser \n\
+    con.query('select * from comments left join user on comments.idUserCommentsFK = user.idUser \n\
     join instructions on comments.idInsructionFK = instructions.idInstruction \n\
     where instructions.idInstruction="'+req.params.id+'" order by comments.dateComment', function(err, result){
         res.send(result);
     });     
+});
+
+router.post('/like', function(req, res, next) {
+    con.query('select * from itransition.like where like.idCommentFK="'+req.body.idCommentFK+'" \n\
+        and like.idUserLikeFK="'+req.body.idUserLikeFK+'"', function(err, result){
+        if(result.length == 0)
+            addLike(req, res);
+        else
+           deleteLike(req, res, result[0].idLike); 
+    });     
+});
+
+function addLike(req, res){
+    con.query('INSERT INTO itransition.like SET ?', req.body, function(err, result) {});
+    con.query('update comments SET comments.countLike=comments.countLike+1 \n\
+        where idComments="'+req.body.idCommentFK+'"', function(err, result) {
+        getCountLike(req, res);
+    });    
+}
+
+function deleteLike(req, res, idLike){
+    con.query('delete from itransition.like where like.idLike="'+idLike+'"',function(err, result) {});
+    con.query('update comments SET comments.countLike=comments.countLike-1 \n\
+        where idComments="'+req.body.idCommentFK+'"', function(err, result) {
+        getCountLike(req, res);
+    });    
+}
+
+function getCountLike(req, res){
+    con.query('select * from comments left join user on comments.idUserCommentsFK = user.idUser where comments.idComments="'+req.body.idCommentFK+'"', function(err, result){
+        res.send(result[0]);
+    });    
+}
+
+function getCountLike(req, res){
+    con.query('select * from comments left join user on comments.idUserCommentsFK = user.idUser where comments.idComments="'+req.body.idCommentFK+'"', function(err, result){
+        res.send(result[0]);
+    });    
+}
+
+router.get('/getIkonLike/:id', function(req, res, next) {
+    con.query('select * from comments left join user on comments.idUserCommentsFK = user.idUser \n\
+        join instructions on comments.idInsructionFK = instructions.idInstruction \n\
+        join itransition.like on comments.idComments = itransition.like.idCommentFK \n\
+        where instructions.idInstruction="'+req.params.id+'"',function(err, result) {
+        res.send(result);
+    });
 });
 
 module.exports = router;

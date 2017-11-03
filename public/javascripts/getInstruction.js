@@ -5,12 +5,14 @@ angular.module("getInstruction",[])
         
         $scope.checkComments = false;
         $scope.comments = [];
+        $scope.checkLike = new Map();
+        
         var socket = io.connect('http://localhost');
         
         socket.on('comment', function (data) {
             if(data.idInsructionFK == $routeParams.id){
                 $scope.$apply(() => pushComment(data));
-                setTimeout(function(){console.log($scope.comments)},0);
+                setTimeout(function(){setComments()},0);
             }
         });            
         
@@ -28,7 +30,8 @@ angular.module("getInstruction",[])
             var html  = $window.marked(response.data[0].text);
             $scope.htmlSafe = $sce.trustAsHtml(html);  
             fullPreview.innerHTML = $scope.htmlSafe; 
-            getComments()
+            getComments();
+            getIkonLike();
         });
         
         function getComments(){
@@ -40,16 +43,26 @@ angular.module("getInstruction",[])
             });            
         }
         
+        function getIkonLike(){
+            $http.get('instruction/getIkonLike/'+$routeParams.id).then(function mySucces(response) {
+                response.data.forEach(function(item, i, arr) {
+                    if($scope.data.idUser == item.idUserLikeFK)
+                        $scope.checkLike.set(item.idComments, true);
+                });
+            });
+        }
+        
         function pushComment(item){
             $scope.checkComments = true;
             $scope.comments.push({
                 idComments : item.idComments,
-                idUserFK : item.idUserFK,
+                idUserCommentsFK : item.idUserCommentsFK,
                 familyName : item.familyName,
                 photo : item.photo,
                 date : $scope.getDate(item.dateComment),
-                text : item.textComment
-            });            
+                text : item.textComment,
+                countLike : item.countLike
+            });           
         }
         
         function setComments(){
@@ -64,7 +77,7 @@ angular.module("getInstruction",[])
             if($scope.comment.length != 0){
                 var obj = {
                     idInsructionFK : $routeParams.id,
-                    idUserFK : $scope.data.idUser,
+                    idUserCommentsFK : $scope.data.idUser,
                     textComment : $scope.comment
                 };
                 $scope.comment = "";
@@ -80,6 +93,25 @@ angular.module("getInstruction",[])
                 document.body.offsetHeight, document.documentElement.offsetHeight,
                 document.body.clientHeight, document.documentElement.clientHeight
             );
+        }
+        
+        $scope.like = function(idComment){
+            var obj = {
+                idCommentFK : idComment,
+                idUserLikeFK : $scope.data.idUser
+            };
+            $http.post('instruction/like', obj).then(function mySucces(response) {
+                $scope.comments.forEach(function(item, i, arr) {
+                    if(item.idComments == response.data.idComments){
+                        $scope.comments[i].countLike = response.data.countLike;
+                        tuningIkonLike(idComment);
+                    }
+                });
+            });
+        };
+        
+        function tuningIkonLike(idComment){
+            $scope.checkLike.set(idComment, !$scope.checkLike.get(idComment));
         }
         
         $scope.generatePDF = function(){

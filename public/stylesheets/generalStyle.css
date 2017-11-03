@@ -404,6 +404,7 @@ table{
     width: 100%;
     resize: none;
     border: none;
+    outline: none;
 }
 
 .commentHead{
@@ -412,4 +413,8 @@ table{
 
 .contentComment{
     margin-bottom: 20px;
+}
+
+.like{
+    float: right;
 }
