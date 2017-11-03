@@ -7,11 +7,20 @@
             </a>
             <span class="post__time">{{instruction.date}}</span>
             <br><br>
-            <button id="cmd" ng-click="generatePDF()">Generate PDF</button>
             <div id="content">
+                <style>
+                    table, tr, td, th{border: 1px solid grey;}
+                    img{max-width: 100%;}
+                </style>
                 <h1 class="post_title_tex">{{instruction.heading}}</h1>
                 <article id="FullPreview"></article>
-                </div>
+            </div>
+            <div class="PDF">
+                <span>Сохранить в формате PDF</span>
+                <a ng-click="generatePDF()">
+                    <img class="btnGeneratePDF" src="http://www.legion490.com/index_htm_files/download_pdf_button.png">
+                </a>
+            </div>
             <hr>
             <span ng-repeat="selectedTag in instruction.tags">
                 <span class="tags">{{selectedTag}}</span>

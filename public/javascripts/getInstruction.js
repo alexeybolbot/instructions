@@ -16,12 +16,6 @@ angular.module("getInstruction",[])
             }
         });            
         
-        var doc = new jsPDF();
-        var specialElementHandlers = {
-            '#editor': function (element, renderer) {
-                return true;
-            }
-        };
         $http.get('instruction/getById/'+$routeParams.id).then(function mySucces(response) {
             $scope.instruction = response.data[0];
             $scope.instruction.tags = response.data[0].tags.split(',');
@@ -115,11 +109,11 @@ angular.module("getInstruction",[])
         }
         
         $scope.generatePDF = function(){
-            doc.fromHTML($('#content').html(), 15, 15, {
-                'width': 170,
-                    'elementHandlers': specialElementHandlers
-            });
-            doc.save('sample-file.pdf');            
+            DocRaptor.createAndDownloadDoc("YOUR_API_KEY_HERE", {
+                test: true,
+                type: "pdf",
+                document_content: document.getElementById('content').innerHTML
+            });   
         };
 
 });

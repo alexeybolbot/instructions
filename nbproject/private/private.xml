@@ -5,9 +5,11 @@
         <group>
             <file>file:/D:/itransition/Курсач/Instructions/app.js</file>
             <file>file:/D:/itransition/Курсач/Instructions/routes/instruction.js</file>
-            <file>file:/D:/itransition/Курсач/Instructions/routes/users.js</file>
+            <file>file:/D:/itransition/Курсач/Instructions/views/index.html</file>
+            <file>file:/D:/itransition/Курсач/Instructions/public/javascripts/PDF.css</file>
             <file>file:/D:/itransition/Курсач/Instructions/public/javascripts/getInstruction.js</file>
             <file>file:/D:/itransition/Курсач/Instructions/public/html/instruction.html</file>
+            <file>file:/D:/itransition/Курсач/Instructions/public/javascripts/addComment.js</file>
         </group>
     </open-files>
 </project-private>

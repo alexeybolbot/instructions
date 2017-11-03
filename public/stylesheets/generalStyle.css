@@ -418,3 +418,29 @@ table{
 .like{
     float: right;
 }
+
+.PDF{
+    position: relative;
+    align-items: center;
+    vertical-align: middle;
+    -webkit-box-align: center;
+    padding: 19px;
+}
+
+.PDF span{
+    font-weight: 500;
+    font-size: 14px;
+    font-family: "-apple-system",BlinkMacSystemFont,Arial,sans-serif;
+}
+
+.btnGeneratePDF{
+    align-items: center;
+    vertical-align: middle;    
+    height: 50px;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0; 
+    float: right;
+    right: 19px;
+}
