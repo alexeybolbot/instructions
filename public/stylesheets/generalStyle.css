@@ -1,3 +1,5 @@
+@import "compass/css3";
+
 a{
     cursor: pointer;
 }
@@ -425,6 +427,7 @@ table{
     vertical-align: middle;
     -webkit-box-align: center;
     padding: 19px;
+    margin-bottom: 20px;
 }
 
 .PDF span{
@@ -439,6 +442,43 @@ table{
     height: 50px;
     position: absolute;
     margin: auto;
+    top: 0;
+    bottom: 0; 
+    float: right;
+    right: 19px;
+}
+
+.star-rating {
+    margin-top: -10px;
+    padding: 0;
+    display: inline-block;
+}
+
+.star {
+    padding: 1px;
+    color: #ddd;
+    font-size: 20px;
+    text-shadow: .05em .05em #aaa;
+    list-style-type: none;
+    display: inline-block;
+    cursor: pointer;    
+}
+
+.filled {
+    color: #fd0;
+}
+
+.readonly .star.filled {
+    color: #e3cf7a;
+}
+
+.blockStars{
+    align-items: center;
+    vertical-align: middle;    
+    height: 20px;
+    position: absolute;
+    margin: auto;
+    padding-bottom: -10px;
     top: 0;
     bottom: 0; 
     float: right;

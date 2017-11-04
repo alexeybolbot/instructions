@@ -15,19 +15,19 @@ function tuningSqlScript(req){
     if(req.body.hub == "all" && req.body.tab == "last")
         return "select * from instructions left join user on instructions.idUserFK = user.idUser ORDER BY instructions.date DESC LIMIT 10";
     else if(req.body.hub == "all" && req.body.tab == "best")
-        return "select * from instructions left join user on instructions.idUserFK = user.idUser ORDER BY instructions.rating DESC LIMIT 10";
+        return "select * from instructions left join user on instructions.idUserFK = user.idUser ORDER BY instructions.avRating DESC LIMIT 10";
     else if(req.body.hub == "tag" && req.body.tab == "last")
         return "select * from tags left join instructions on tags.idInstructionFK = instructions.idInstruction \n\
                 left join user on instructions.idUserFK = user.idUser where tags.tag='"+req.body.name+"' ORDER BY instructions.date DESC LIMIT 10";
     else if(req.body.hub == "tag" && req.body.tab == "best")
         return "select * from tags left join instructions on tags.idInstructionFK = instructions.idInstruction \n\
-                left join user on instructions.idUserFK = user.idUser where tags.tag='"+req.body.name+"' ORDER BY instructions.rating DESC LIMIT 10";    
-    else if(req.body.hub == "tag" && req.body.tab == "last")
+                left join user on instructions.idUserFK = user.idUser where tags.tag='"+req.body.name+"' ORDER BY instructions.avRating DESC LIMIT 10";    
+    else if(req.body.hub == "subject" && req.body.tab == "last")
         return "select * from instructions left join user on instructions.idUserFK = user.idUser \n\
                 where instructions.subject='"+req.body.name+"' ORDER BY instructions.date DESC LIMIT 10";
-    else if(req.body.hub == "tag" && req.body.tab == "last")
+    else if(req.body.hub == "subject" && req.body.tab == "last")
         return "select * from instructions left join user on instructions.idUserFK = user.idUser \n\
-                where instructions.subject='"+req.body.name+"' ORDER BY instructions.rating DESC LIMIT 10";    
+                where instructions.subject='"+req.body.name+"' ORDER BY instructions.avRating DESC LIMIT 10";    
 }
 
 router.post('/add', function(req, res, next) {
@@ -110,6 +110,33 @@ router.get('/getIkonLike/:id', function(req, res, next) {
         where instructions.idInstruction="'+req.params.id+'"',function(err, result) {
         res.send(result);
     });
+});
+
+router.post('/rating', function(req, res, next) {
+    con.query('INSERT INTO itransition.rating SET ?', req.body, function(err, result) {
+        con.query('select * from itransition.rating left join instructions on \n\
+            rating.idInstructionRatingFK = instructions.idInstruction where instructions.idInstruction = "'+req.body.idInstructionRatingFK+'"', function(err2, result2) {
+            calculateAverageRating(result2, req, res);
+        });
+    });    
+});
+
+function calculateAverageRating(arr, req, res){
+    var avRating = 0;
+    arr.forEach(function(item, i, arr) {
+        avRating += item.rating;
+    });
+    avRating = (avRating/arr.length).toFixed(1);
+    con.query('UPDATE instructions SET ? WHERE idInstruction = "'+req.body.idInstructionRatingFK+'"', {avRating:avRating}, function(err, result) {
+        res.send({avRating:avRating});
+    });    
+}
+
+router.get('/getRating/:id', function(req, res, next) {
+        con.query('select * from itransition.rating left join instructions on \n\
+            rating.idInstructionRatingFK = instructions.idInstruction where instructions.idInstruction = "'+req.params.id+'"', function(err, result) {
+            res.send(result);
+        });
 });
 
 module.exports = router;

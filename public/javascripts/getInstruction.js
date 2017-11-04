@@ -6,6 +6,9 @@ angular.module("getInstruction",[])
         $scope.checkComments = false;
         $scope.comments = [];
         $scope.checkLike = new Map();
+        $scope.rating = 0;
+        $scope.avRating = 0;
+        $scope.isReadonly = false;
         
         var socket = io.connect('http://localhost');
         
@@ -23,9 +26,11 @@ angular.module("getInstruction",[])
             var fullPreview = document.getElementById("FullPreview");
             var html  = $window.marked(response.data[0].text);
             $scope.htmlSafe = $sce.trustAsHtml(html);  
-            fullPreview.innerHTML = $scope.htmlSafe; 
+            fullPreview.innerHTML = $scope.htmlSafe;
+            $scope.avRating = response.data[0].avRating;
             getComments();
             getIkonLike();
+            getRating();
         });
         
         function getComments(){
@@ -45,6 +50,18 @@ angular.module("getInstruction",[])
                 });
             });
         }
+        
+        function getRating(){
+            $http.get('instruction/getRating/'+$routeParams.id).then(function mySucces(response) {
+                console.log(response.data);
+                response.data.forEach(function(item, i, arr) {
+                    if($scope.data.idUser == item.idUserRatingFK){
+                        $scope.rating = item.rating;
+                        $scope.isReadonly = true;
+                    }
+                });
+            });
+        }        
         
         function pushComment(item){
             $scope.checkComments = true;
@@ -115,5 +132,62 @@ angular.module("getInstruction",[])
                 document_content: document.getElementById('content').innerHTML
             });   
         };
+         
+        $scope.rateFunction = function(rating) {
+            var obj = {
+                idInstructionRatingFK : $routeParams.id,
+                idUserRatingFK : $scope.data.idUser,
+                rating : rating
+            };
+            $http.post('instruction/rating', obj).then(function mySucces(response) {
+                $scope.avRating = response.data.avRating;
+            });           
+        };
+        
 
-});
+}).directive('starRating', starRating);
+
+function starRating() {
+    return {
+        restrict: 'EA',
+        template:
+            '<ul class="star-rating" ng-class="{readonly: readonly}">' +
+            '    <li ng-repeat="star in stars" class="star" ng-class="{filled: star.filled}" ng-click="toggle($index)">' +
+            '      <i class="fa fa-star"></i>' + 
+            '    </li>' +
+            '</ul>',
+        scope: {
+            ratingValue: '=ngModel',
+            max: '=?',
+            onRatingSelect: '&?',
+            readonly: '=?'
+        },
+        link: function(scope, element, attributes) {
+            if (scope.max == undefined) {
+                scope.max = 5;
+            }
+            function updateStars() {
+                scope.stars = [];
+                for (var i = 0; i < scope.max; i++) {
+                    scope.stars.push({
+                        filled: i < scope.ratingValue
+                    });
+                }
+            };
+            scope.toggle = function(index) {
+                if (scope.readonly == undefined || scope.readonly === false){
+                    scope.ratingValue = index + 1;
+                    scope.onRatingSelect({
+                        rating: index + 1
+                    });
+                    scope.readonly = true;
+                }
+            };
+            scope.$watch('ratingValue', function(oldValue, newValue) {
+                if (newValue || newValue === 0) {
+                    updateStars();
+                }
+            });
+        }
+    };
+}
