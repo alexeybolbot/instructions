@@ -2,7 +2,8 @@ var app = angular.module('indexApp', [
     "ngRoute",
     "instructions",
     "writeInstruction",
-    "getInstruction"
+    "getInstruction",
+    "fullTextSearch"
 ]);
 
 app.config(function($routeProvider) {
@@ -15,6 +16,9 @@ app.config(function($routeProvider) {
     }).when('/instruction/:id',{
         templateUrl:'html/instruction.html',
         controller:'getInstructionCtrl' 
+    }).when('/fullTextSearch/:text',{
+        templateUrl:'html/fullTextSearch.html',
+        controller:'fullTextSearchCtrl' 
     });
     
 }).controller('indexCtrl', function($rootScope, $scope, $http) {
@@ -26,6 +30,7 @@ app.config(function($routeProvider) {
     $rootScope.hub = "all";
     $rootScope.tab = "last";
     $rootScope.name = "";
+    $scope.showSearch = false;
     
     var config = {
         apiKey: "AIzaSyBjdb8e9r1BjW1w_oD4E1fiJpYPcn4yVsM",
@@ -82,5 +87,13 @@ app.config(function($routeProvider) {
         var minutes = (now.getMinutes() < 10) ? '0' + now.getMinutes() : now.getMinutes();
         return now.getDate()+"-"+(now.getMonth()+1)+"-"+now.getFullYear()+" "+hours+":"+minutes;
     };
+    
+    $scope.openInputSearch = function(){
+        $scope.showSearch = true;
+    };
+    
+    $scope.closeInputSearch = function(){
+        $scope.showSearch = false;
+    };    
 
 });

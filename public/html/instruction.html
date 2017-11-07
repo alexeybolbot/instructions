@@ -48,13 +48,13 @@
                     </a>
                     <span class="post__time">{{comm.date}}</span>
                     <span class="like">   
-                    <a ng-show="!checkLike.get(comm.idComments)">
-                        <i class="fa fa-thumbs-o-up" aria-hidden="true" ng-click="like(comm.idComments)"></i>
-                    </a>
-                    <a ng-show="checkLike.get(comm.idComments)">
-                        <i class="fa fa-thumbs-up" aria-hidden="true" ng-click="like(comm.idComments)"></i>
-                    </a>                        
-                    {{comm.countLike}}                       
+                        <a ng-show="!checkLike.get(comm.idComments)">
+                            <i class="fa fa-thumbs-o-up" aria-hidden="true" ng-click="like(comm.idComments)"></i>
+                        </a>
+                        <a ng-show="checkLike.get(comm.idComments)">
+                            <i class="fa fa-thumbs-up" aria-hidden="true" ng-click="like(comm.idComments)"></i>
+                        </a>                        
+                        {{comm.countLike}}                       
                     </span>
                 </div>
                 <textarea id="commentsList{{comm.idComments}}" class="commentsList" readonly>{{comm.text}}</textarea>

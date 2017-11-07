@@ -14,3 +14,11 @@ table, tr, td, th{
 .PDF{
     border: 1px solid #e4e8ea;
 }
+
+.searchInstructions h1{
+    color: black;
+}
+
+.searchInstructions p{
+    color: black;
+}

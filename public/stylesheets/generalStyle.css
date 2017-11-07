@@ -2,6 +2,11 @@
 
 a{
     cursor: pointer;
+    text-decoration: none;
+}
+
+textarea, input, button{
+    outline: none;
 }
 
 .icon{
@@ -33,6 +38,31 @@ a{
 
 .settings{
     color: hsl(0, 0%, 63%);
+}
+
+.inputGroupSearch{
+    border: 1px solid #ced4da;
+    height: 30px;
+    width: 500px;
+}
+
+.search{
+    border-radius: 0;
+    border: 0; 
+    background: white;
+}
+
+.inputSearch{
+    width: 100%;
+}
+
+.ikonSearch{
+    font-size: 14px;
+}
+
+.btnSearch{
+    cursor: pointer;
+    
 }
 
 .dropdown {
@@ -483,4 +513,41 @@ table{
     bottom: 0; 
     float: right;
     right: 19px;
+}
+
+.headResultSearch{
+    font: 700 3em/1.167em Arial,Helvetica,sans-serif;
+    padding-bottom: 5px;
+    letter-spacing: -.025em;
+    font-size: 40px;
+}
+
+.searchNote{
+    font: 13px/20px Arial,Helvetica,sans-serif;
+    color: gray;
+    font-size: 14px;
+    margin-top: -80px;
+}
+
+.searchInstructions{
+    margin-bottom: 30px;
+}
+
+.searchInstructions a{
+    text-decoration: none;
+}
+
+.searchInstructions a:hover h1{
+    color: #548eaa;
+}
+
+.searchInstructions .preview{
+    width: 100%;
+}
+
+.searchInstructions h1{
+    font: 700 3em/1.167em Arial,Helvetica,sans-serif;
+    letter-spacing: -.025em;
+    font-size: 20px;
+    margin-top: 10px;
 }

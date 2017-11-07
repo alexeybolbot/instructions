@@ -14,6 +14,7 @@ var authorization = require('./routes/authorization');
 var authSocial = require('./routes/authSocial');
 var sessionActions = require('./routes/session');
 var instruction = require('./routes/instruction');
+var fullTextSearch = require('./routes/fullTextSearch');
 
 var options = require('./public/javascripts/dbOptions');
 var ac = require('./public/javascripts/addComment');
@@ -43,6 +44,7 @@ app.use('/authorization', authorization);
 app.use('/authSocial', authSocial);
 app.use('/session', sessionActions);
 app.use('/instruction', instruction);
+app.use('/fullTextSearch', fullTextSearch);
 
 server.listen(80);
 

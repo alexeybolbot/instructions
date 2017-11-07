@@ -40,5 +40,5 @@ angular.module("instructions",[])
             getInstructions();
             window.scrollTo(0,0);
         };
-
+        
 });

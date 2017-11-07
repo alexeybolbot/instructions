@@ -39,3 +39,11 @@ hr{
 .PDF{
     border: 1px solid #333333;
 }
+
+.searchInstructions h1{
+    color: white;
+}
+
+.searchInstructions p{
+    color: white;
+}

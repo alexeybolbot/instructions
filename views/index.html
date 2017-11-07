@@ -28,6 +28,7 @@
         <script src="javascripts/instructions.js"></script>
         <script src="javascripts/writeInstruction.js"></script>
         <script src="javascripts/getInstruction.js"></script>
+        <script src="javascripts/fullTextSearch.js"></script>
     </head>
     <body class="night">
         <nav class="navbar navbar-expand-md navbar-{{styleNavbar}} navbarIndex night-l">
@@ -46,9 +47,15 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#">Пользователи</a>
                         </li>
-                    </ul>
+                    </ul>                   
+                    <div ng-show="showSearch" class="input-group inputGroupSearch mr-sm-2">
+                        <button class="search"><a href="#!fullTextSearch/{{dataOfSearch}}"><i class="fa fa-search settings btnSearch" aria-hidden="true"></i></a></button>
+                        <input type="text" placeholder="Поиск" class="search inputSearch" ng-model="dataOfSearch">
+                        <button class="search"><i class="fa fa-times settings btnSearch" aria-hidden="true" ng-click="closeInputSearch()"></i></button>
+                    </div>                 
+                    <i ng-show="!showSearch" class="fa fa-search mr-sm-3 ikonSearch settings btnSearch" aria-hidden="true" ng-click="openInputSearch()"></i>
                     <li class="nav-item dropdown">
-                        <i class="fa fa-cog mr-sm-2 settings" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Настройки"></i>
+                        <i class="fa fa-cog mr-sm-3 settings" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Настройки"></i>
                         <div class="dropdown-menu night-l navbarDropdownMenuLink" aria-labelledby="navbarDropdownMenuLink">                            
                             <div>
                                 <label>

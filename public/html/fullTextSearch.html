@@ -1,0 +1,23 @@
+<div class="container cont">
+    <h1 class="headResultSearch">Результаты поиска</h1>
+    <span class="searchNote">По запросу <b>«{{text}}»</b> найдено {{countResultSearch}} инструкций</span>
+    <br><br><br>
+    <div class="row">
+        <div class="col-md-10 searchInstructions" ng-repeat="i in instructions">
+            <div class="row">
+                <div class="col-md-5">
+                    <a href="#!instruction/{{i.idinstruction}}"><img class="preview" src={{i.preview}}></a>
+                </div>
+                <div class="col-md-7">
+                    <a>
+                        <img class="image-mini" src={{i.photo}}>
+                        <span class="user-info__nickname">{{i.familyname}}</span>                
+                    </a>
+                    <span class="post__time">{{i.date}}</span>                    
+                    <a href="#!instruction/{{i.idinstruction}}"><h1 class="post_title_tex">{{i.heading}}</h1>
+                        <p>{{i.shortdescription}}</p></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

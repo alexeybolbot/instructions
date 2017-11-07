@@ -2,6 +2,9 @@
 
 angular.module("writeInstruction",['ngFileUpload'])
     .controller('writeInstructionCtrl',function($scope, $http, $window, $sce){
+                
+        if(!$scope.data)
+            window.location = "http://localhost:3000/";
 
         var simplemde = null;
         var article = document.querySelector('article');
