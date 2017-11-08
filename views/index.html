@@ -29,6 +29,7 @@
         <script src="javascripts/writeInstruction.js"></script>
         <script src="javascripts/getInstruction.js"></script>
         <script src="javascripts/fullTextSearch.js"></script>
+        <script src="javascripts/profile.js"></script>
     </head>
     <body class="night">
         <nav class="navbar navbar-expand-md navbar-{{styleNavbar}} navbarIndex night-l">
@@ -80,10 +81,10 @@
                     </li>
                     <div class="btn-group">
                         <a class="signIn" href="/authorization" ng-show="!checkAuth">Войти</a>
-                        <a href="#!write"><button type="button" class="btn btn-outline-info navwrite mr-sm-2" ng-show="checkAuth">Написать</button></a>
+                        <a href="#!write/0/{{data.idUser}}"><button type="button" class="btn btn-outline-info navwrite mr-sm-2" ng-show="checkAuth">Написать</button></a>
                         <img src="{{data.photo}}" class="navicon" ng-show="checkAuth" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="{{data.familyName}}">
                         <div class="dropdown-menu night-l navbarDropdownProfile">                            
-                            <a class="dropdown-item" href="#">Профиль</a>
+                            <a class="dropdown-item" href="#!profile/{{data.idUser}}">Профиль</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="/session/exit">Выход</a>   
                         </div>

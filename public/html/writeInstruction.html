@@ -40,7 +40,7 @@
             <textarea id="text"></textarea>
             <br>
             <div class="buttons blue_buttons_panel">
-                <input type="submit" class="btn_blue_buttons_panel" name="submit" ng-click="publishInstruction()" value="Опубликовать">
+                <input type="submit" class="btn_blue_buttons_panel" name="submit" ng-click="publishInstruction()" value="{{btnAction}}">
                 <input type="button" class="btn_blue_buttons_panel" ng-click="getFullPostPreview()" value="Предпросмотр">
             </div>
             <div class="row">
@@ -53,8 +53,8 @@
             <div class="collapsed-form-FullPreview">
                 <h4>Вид публикации в свернутом формате</h4>
                 <a>
-                    <img class="image-mini" src={{data.photo}}>
-                    <span class="user-info__nickname">{{data.familyName}}</span>                
+                    <img class="image-mini" src={{user.photo}}>
+                    <span class="user-info__nickname">{{user.familyName}}</span>                
                 </a>
                 <span class="post__time">{{datePublished}}</span>
                 <h1 class="post_title_tex">{{headingInput1}}</h1>
@@ -71,8 +71,8 @@
             <br>
             <h4>Вид публикации в развёрнутом формате</h4>
             <a>
-                <img class="image-mini" src={{data.photo}}>
-                <span class="user-info__nickname">{{data.familyName}}</span>                
+                <img class="image-mini" src={{user.photo}}>
+                <span class="user-info__nickname">{{user.familyName}}</span>                
             </a>
             <span class="post__time">{{datePublished}}</span>            
             <h1 class="post_title_tex">{{headingInput1}}</h1>

@@ -39,7 +39,7 @@ router.post('/add', function(req, res, next) {
 function addTags(obj, id, res){
     var tags = obj.tags.split(',');
     tags.forEach(function(item, i, tags) {
-        con.query('INSERT INTO tags SET ?', {idInstructionFK: id, tag : item}, function(err, result) {});
+        con.query('INSERT INTO tags SET ?', {idInstructionFK: id, tag : item, idUserTagFK : obj.idUserFK}, function(err, result) {});
     });
     res.send(200);
 }
@@ -97,12 +97,6 @@ function getCountLike(req, res){
     });    
 }
 
-function getCountLike(req, res){
-    con.query('select * from comments left join user on comments.idUserCommentsFK = user.idUser where comments.idComments="'+req.body.idCommentFK+'"', function(err, result){
-        res.send(result[0]);
-    });    
-}
-
 router.get('/getIkonLike/:id', function(req, res, next) {
     con.query('select * from comments left join user on comments.idUserCommentsFK = user.idUser \n\
         join instructions on comments.idInsructionFK = instructions.idInstruction \n\
@@ -133,10 +127,38 @@ function calculateAverageRating(arr, req, res){
 }
 
 router.get('/getRating/:id', function(req, res, next) {
-        con.query('select * from itransition.rating left join instructions on \n\
-            rating.idInstructionRatingFK = instructions.idInstruction where instructions.idInstruction = "'+req.params.id+'"', function(err, result) {
-            res.send(result);
-        });
+    con.query('select * from itransition.rating left join instructions on \n\
+        rating.idInstructionRatingFK = instructions.idInstruction where instructions.idInstruction = "'+req.params.id+'"', function(err, result) {
+        res.send(result);
+    });
+});
+
+router.post('/delete', function(req, res, next) {
+    con.query('delete from instructions where instructions.idInstruction="'+req.body.idInstruction+'"',function(err, result) {});
+    con.query('update user SET user.countInstructions=user.countInstructions-1 \n\
+        where idUser="'+req.body.idUser+'"', function(err, result) {
+        res.send(200);
+    });     
+});
+
+router.post('/update', function(req, res, next) {
+    var obj = req.body;
+    obj.date = new Date();
+    con.query('UPDATE instructions SET ? WHERE instructions.idInstruction = "'+req.body.idInstruction+'"', obj, function(err, result){     
+        updateTags(obj, res)
+    });  
+});
+
+function updateTags(obj, res){
+    con.query('delete from tags where tags.idInstructionFK="'+obj.idInstruction+'" and tags.idUserTagFK="'+obj.idUserFK+'"',function(err, result) {
+        addTags(obj, obj.idInstruction, res);
+    });
+}
+
+router.get('/getTagsByIdUser/:id', function(req, res, next) {
+    con.query('select * from itransition.tags where tags.idUserTagFK = "'+req.params.id+'"', function(err, result) {
+        res.send(result);
+    });
 });
 
 module.exports = router;

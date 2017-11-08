@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module("instructions",[])
-    .controller('instructionsCtrl',function($rootScope, $scope, $http){
+    .controller('instructionsCtrl',function($rootScope, $routeParams, $scope, $http){
         
         function getInstructions(){
             $http.post('instruction/',{hub:$scope.hub, tab:$scope.tab, name:$scope.name}).then(function mySucces(response) {
@@ -12,10 +12,18 @@ angular.module("instructions",[])
                 });
             });               
         }
+        
+        function checkingUrl(){
+            if($routeParams.hub == "tag")
+                $scope.showPublicationsByTag($routeParams.name);
+            else{
+                tuningStyleTabs($rootScope.tab);
+                getInstructions();                
+            }
+        }
                 
-        $(document).ready(function() {;
-            tuningStyleTabs($rootScope.tab);
-            getInstructions();
+        $(document).ready(function() {         
+            checkingUrl();
         });
         
         $scope.showPublications = function(data){

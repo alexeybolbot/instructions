@@ -22,3 +22,11 @@ table, tr, td, th{
 .searchInstructions p{
     color: black;
 }
+
+.instructionsUser h1{
+    color: black;
+}
+
+.instructionsUser p{
+    color: black;
+}

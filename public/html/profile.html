@@ -1,0 +1,58 @@
+<div class="container cont">
+    <div class="row">
+        <div class="headProfile">
+            <img class="imageProfile" src={{user.photo}}>
+        </div>
+        <div class="headProfile">
+            <div>
+                <span class="nicknameProfile">{{user.familyName[0]}}</span>
+            </div>
+            <div>
+                <span class="nicknameProfile">{{user.familyName[1]}}</span>
+            </div>
+        </div>
+    </div>
+    <br><br>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="tabs-menu">
+                <a id="tabs-prof" class="tm tabs-menu-active" ng-click="showProfile('prof')"><span>Профиль</span></a>
+                <a id="tabs-instr" class="tm tabs-menu-not-active" ng-click="showInstructions('instr')"><span>Инструкции</span></a>
+            </div>
+            <hr>
+            <div ng-show="tabs=='prof'" class="tabsInstr col-md-12">
+                <p class="profileSectionTitle">Значки</p>
+                <span ng-show="!countBadges" class="searchNote">Значков нет</span>
+                <br><br>
+                <p class="profileSectionTitle">Используемые теги</p>
+                <span ng-show="!countTags" class="searchNote">Отсутствуют</span>
+                <span ng-repeat="tag in tags">
+                    <a href="#!instructions/tag/{{tag}}"><span class="tagsProfile">{{tag}}</span></a>
+                </span>
+            </div>            
+            <div ng-show="tabs=='instr'" class="tabsInstr col-md-12">
+                <span ng-show="!countInstructions" class="searchNote">Инструкций нет</span>
+                <div class="instructionsUser" ng-repeat="i in instructions">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <a href="#!instruction/{{i.idInstruction}}"><img class="preview" src={{i.preview}}></a>
+                        </div>
+                        <div class="col-md-6">
+                            <a href="#!instruction/{{i.idInstruction}}">
+                                <h1>{{i.heading}}</h1>
+                                <span class="postTime">{{i.date}}</span>                    
+                                <p>{{i.shortDescription}}</p>
+                            </a>
+                        </div>
+                        <div class="col-md-2">
+                            <div ng-show="accessStatus" class="btn-group actionInstructionsProfile" data-toggle="buttons">
+                                <button type="button" class="btn btn-outline-primary btnActionInstr mr-sm-1" ng-click="updateInstruction(i.idInstruction)"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                                <button type="button" class="btn btn-outline-danger btnActionInstr" ng-click="deleteInstruction(i.idInstruction)"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

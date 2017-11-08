@@ -551,3 +551,103 @@ table{
     font-size: 20px;
     margin-top: 10px;
 }
+
+.imageProfile{
+    height: 50px;
+    width: 50px;
+    border-radius: 15px;
+}
+
+.nicknameProfile{
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.headProfile{
+    margin-left: 15px;
+}
+
+.instructionsUser{
+    padding: 0;
+    margin: 0 0 20px 0;
+}
+
+.instructionsUser a{
+    text-decoration: none;
+    padding: 0;
+    margin: 0;
+}
+
+.instructionsUser h1{
+    font-family: 'Fira Sans',sans-serif;
+    font-weight: 500;
+    font-size: 32px;
+    margin: 0;
+    padding: 0;
+}
+
+.instructionsUser a:hover h1{
+    color: #548eaa;
+}
+
+.instructionsUser img{
+    max-width: 100%;
+}
+
+.instructionsUser .postTime{
+    font-weight: 500;
+    font-size: 13px;
+    color: #5f5f5f;
+}
+
+.actionInstructionsProfile{
+    display: none;
+}
+
+.instructionsUser:hover .actionInstructionsProfile{
+    display:block;
+}
+
+.actionInstructionsProfile{
+    float: right;
+}
+
+.btnActionInstr{
+    padding: 5px 10px;
+    width: 40px;
+    border-radius: 0;
+}
+
+.tabsInstr{
+    padding: 0;
+}
+
+.profileSectionTitle{
+    font-weight: 700;
+    font-size: 14px;
+    font-family: "-apple-system",BlinkMacSystemFont,Arial,sans-serif;
+    line-height: 20px;
+    margin: 0;
+}
+
+.tagsProfile{
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    display: inline-block;
+    padding: 0 12px;
+    height: 28px;
+    border-radius: 3px;
+    background-color: #e4eff2;
+    color: #5e6973;
+    white-space: nowrap;
+    font-weight: 500;
+    font-size: 13px;
+    font-family: "-apple-system",BlinkMacSystemFont,Arial,sans-serif;
+    line-height: 28px;
+    margin-top: 5px;
+    cursor: pointer;
+}
+
+.tagsProfile:hover{
+    background-color: #bae4ff;
+}

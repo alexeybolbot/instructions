@@ -77,7 +77,7 @@ router.get("/verification/:st", function(req,res){
 router.post('/signIn', function(req, res) {     
     con.query('SELECT * FROM user WHERE email="'+req.body.email+'" and password="'+req.body.password+'"', function(err, result) {
         if(result.length != 0){
-            if(result[0].status == 2)
+            if(result[0].status > 1)
                 sessionSetup(req, res, result);            
             res.send(""+result[0].status);
         }else{
@@ -98,5 +98,11 @@ function sessionSetup(req, res, result){
     req.session.language = result[0].language;
     req.session.save();
 };
+
+router.get("/getInfoUserById/:id", function(req,res){    
+    con.query("select * from user left join instructions on user.idUser = instructions.idUserFK where user.idUser = '"+req.params.id+"'", function(err, result){
+        res.send(result);      
+    });     
+});
 
 module.exports = router;

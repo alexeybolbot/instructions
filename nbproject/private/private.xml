@@ -4,12 +4,13 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/D:/itransition/Курсач/Instructions/public/stylesheets/generalStyle.css</file>
-            <file>file:/D:/itransition/Курсач/Instructions/public/javascripts/fullTextSearch.js</file>
-            <file>file:/D:/itransition/Курсач/Instructions/app.js</file>
-            <file>file:/D:/itransition/Курсач/Instructions/public/html/fullTextSearch.html</file>
+            <file>file:/D:/itransition/Курсач/Instructions/routes/instruction.js</file>
             <file>file:/D:/itransition/Курсач/Instructions/public/javascripts/instructions.js</file>
+            <file>file:/D:/itransition/Курсач/Instructions/public/javascripts/profile.js</file>
             <file>file:/D:/itransition/Курсач/Instructions/public/html/instructions.html</file>
-            <file>file:/D:/itransition/Курсач/Instructions/routes/fullTextSearch.js</file>
+            <file>file:/D:/itransition/Курсач/Instructions/public/html/writeInstruction.html</file>
+            <file>file:/D:/itransition/Курсач/Instructions/public/html/profile.html</file>
+            <file>file:/D:/itransition/Курсач/Instructions/public/javascripts/writeInstruction.js</file>
         </group>
     </open-files>
 </project-private>

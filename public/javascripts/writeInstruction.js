@@ -1,18 +1,94 @@
 'use strict';
 
 angular.module("writeInstruction",['ngFileUpload'])
-    .controller('writeInstructionCtrl',function($scope, $http, $window, $sce){
+    .controller('writeInstructionCtrl',function($routeParams, $scope, $http, $window, $sce){
                 
-        if(!$scope.data)
-            window.location = "http://localhost:3000/";
+        function accessCheck(){
+            if(!$scope.data)
+                window.location = "http://localhost:3000/";
+            else if($routeParams.idInstr != 0 && $scope.data.status != 3){
+                if($routeParams.idUser != $scope.data.idUser)
+                    window.location = "http://localhost:3000/";
+                else{
+                    getUserAndInstruction();
+                }
+            }
+            else if($routeParams.idInstr != 0 && $scope.data.status == 3){
+                getUserAndInstruction();
+            }
+        }
+        
+        function getUserAndInstruction(){
+            getUser($routeParams.idUser);
+            getInstruction($routeParams.idInstr);            
+        }
+        
+        function urlCheck(response){
+            if(response.data.length == 0)
+                window.location = "http://localhost:3000/";
+        }
+        
+        function getUser(id){
+            $http.get('users/getInfoUserById/'+id).then(function mySucces(response) {
+                urlCheck(response);
+            }, function myError(response){
+                console.log(response);
+            });            
+        }
+        
+        function getInstruction(id){
+            $http.get('instruction/getById/'+id).then(function mySucces(response) {
+                urlCheck(response);
+                if(response.data[0].idUserFK != $routeParams.idUser && $scope.data.status != 3)
+                    window.location = "http://localhost:3000/";
+                insertingDataForEditing(response.data[0]);
+            }, function myError(response){
+                console.log(response);
+            });            
+        }
 
+        function insertingDataForEditing(data){
+            $scope.user.idUser = data.idUserFK;
+            $scope.user.photo = data.photo;
+            $scope.user.familyName = data.familyName;
+            $scope.headingInput1 = data.heading;
+            $scope.shortDescriptionInput1 = data.shortDescription;
+            $scope.previewInput1 = data.preview;
+            $scope.subjectSelect1 = data.subject;
+            var tags = data.tags.split(',');
+            tags.forEach(function(item, i, arr) {
+                $scope.selectedTags.push(item);
+            });
+            $('#text').val(data.text);
+            installMarkdown();
+        }
+        
+        function choiceOfAction(){
+            if($routeParams.idInstr != 0){
+                $scope.action = "update";
+                $scope.btnAction = "Редактировать";
+            }
+            else{
+                $scope.action = "create";
+                $scope.btnAction = "Опубликовать";
+            }
+        }
+        
         var simplemde = null;
         var article = document.querySelector('article');
         $scope.previewOrImage = "";
         $scope.selectedTags = [];
+        $scope.user = {};
         $scope.showCreateInstructionOrPreview = true;
-        
         $scope.datePublished = $scope.getDate(new Date());
+        
+        $(document).ready(function() {
+            accessCheck();
+            $scope.hideAlertPublishInstruction();
+            getTags();
+            choiceOfAction();
+            //installMarkdown();
+        });
         
         function getTags(){
             $http.get('instruction/tags').then(function mySucces(response) {
@@ -32,12 +108,6 @@ angular.module("writeInstruction",['ngFileUpload'])
                 $scope.tags.push(item);
             });       
         }
-        
-        $(document).ready(function() {
-            $scope.hideAlertPublishInstruction();
-            getTags();
-            installMarkdown();
-        });
         
         function installMarkdown(){
             simplemde = new SimpleMDE({
@@ -241,7 +311,7 @@ angular.module("writeInstruction",['ngFileUpload'])
             var uploadTask = storageRef.put(file);
             uploadTask.on('state_changed', function(snapshot){
                 var percent = snapshot.bytesTransferred / snapshot.totalBytes * 100;
-                move(percent);
+                move(percent); 
             }, 
             function(error) {
                 console.log(error);
@@ -293,19 +363,20 @@ angular.module("writeInstruction",['ngFileUpload'])
             $scope.hideAlertPublishInstruction();
             if(checkData()){
                 var obj = {
+                    idInstruction : $routeParams.idInstr,
                     heading : $scope.headingInput1,
                     shortDescription : $scope.shortDescriptionInput1,
                     preview : $scope.previewInput1,
                     subject : $scope.subjectSelect1,
                     tags : $scope.selectedTags.join(),
                     text : simplemde.value(),
-                    idUserFK : $scope.data.idUser
+                    idUserFK : $scope.user.idUser
                 };
-                $http.post('instruction/add',obj).then(function mySucces(response) {
-                    showAlertPublishInstruction();
+                $http.post('instruction/update',obj).then(function mySucces(response) {
+                    /*showAlertPublishInstruction();
                     cleanData();
                     getTags();
-                    window.scrollTo(0,0);
+                    window.scrollTo(0,0);*/
                 }, function myError(response){
                     console.log(response);
                 });     

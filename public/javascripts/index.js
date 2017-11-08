@@ -3,14 +3,15 @@ var app = angular.module('indexApp', [
     "instructions",
     "writeInstruction",
     "getInstruction",
-    "fullTextSearch"
+    "fullTextSearch",
+    "profile"
 ]);
 
 app.config(function($routeProvider) {
     $routeProvider.when("/", {
         templateUrl : "/html/instructions.html",
         controller : "instructionsCtrl"
-    }).when("/write", {
+    }).when("/write/:idInstr/:idUser", {
         templateUrl : "/html/writeInstruction.html",
         controller : "writeInstructionCtrl"
     }).when('/instruction/:id',{
@@ -19,6 +20,12 @@ app.config(function($routeProvider) {
     }).when('/fullTextSearch/:text',{
         templateUrl:'html/fullTextSearch.html',
         controller:'fullTextSearchCtrl' 
+    }).when('/profile/:id',{
+        templateUrl:'html/profile.html',
+        controller:'profileCtrl' 
+    }).when("/instructions/:hub/:name", {
+        templateUrl : "/html/instructions.html",
+        controller : "instructionsCtrl"
     });
     
 }).controller('indexCtrl', function($rootScope, $scope, $http) {
