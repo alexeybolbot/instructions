@@ -1,0 +1,47 @@
+<div class="container cont">
+    <div class="row adminPanel">
+        <div class="col-md-12">
+            <h3 class="adminPanelTitle">Админка</h3>
+            <br><br>
+            <div class="input-group inputGroupSearch">
+                <span class="ikonSearchAdminPanel"><i class="fa fa-search settings" aria-hidden="true"></i></span>
+                <input type="text" placeholder="Поиск пользователя" class="search inputSearch" ng-model="searchFilter.familyName">
+            </div>
+            <br>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Пользователь</th>
+                  <th scope="col" class="columnStatus">
+                    <li class="nav-item dropdown">
+                        <a style="padding: 0; margin: 0;" class="nav-link " id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Статус <i class="fa fa-caret-down" aria-hidden="true"></i>
+                        </a>
+                        <div class="dropdown-menu night-l" aria-labelledby="navbarDropdown" >
+                            <a class="dropdown-item" ng-click="searchFilter = {status: ''}">All</a>
+                            <a class="dropdown-item" ng-click="searchFilter = {status: 1}">Blocked</a>
+                            <a class="dropdown-item" ng-click="searchFilter = {status: 2}">User</a>
+                            <a class="dropdown-item" ng-click="searchFilter = {status: 3}">Admin</a>
+                        </div>
+                    </li>                    
+                  </th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="user in (filteredItems = (users | filter:searchFilter))" class="listUsersAdmin">
+                    <th scope="col">{{$index+1}}</th>
+                    <td><a href="#!profile/{{user.idUser}}" class="avatarAndFullName"><img src="{{user.photo}}"> <span class="listFullName">{{user.familyName}}</span></a></td>
+                    <td><a href="#" id="userStatus{{user.idUser}}">{{user.statusText}}</a></td>
+                    <td>
+                        <div class="btn-group actionInstructionsProfile" data-toggle="buttons">
+                            <button type="button" class="btn btn-outline-danger btnActionInstr" ng-click="deleteUser(user.idUser)"><i class="fa fa-trash" aria-hidden="true"></i> Удалить</button>
+                        </div>                      
+                    </td>
+                </tr>
+              </tbody> 
+            </table>           
+        </div>
+    </div>
+</div>

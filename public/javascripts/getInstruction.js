@@ -10,9 +10,7 @@ angular.module("getInstruction",[])
         $scope.avRating = 0;
         $scope.isReadonly = false;
         
-        var socket = io.connect('http://localhost');
-        
-        socket.on('comment', function (data) {
+        $scope.socket.on('comment', function (data) {
             if(data.idInsructionFK == $routeParams.id){
                 $scope.$apply(() => pushComment(data));
                 setTimeout(function(){setComments()},0);
@@ -53,7 +51,6 @@ angular.module("getInstruction",[])
         
         function getRating(){
             $http.get('instruction/getRating/'+$routeParams.id).then(function mySucces(response) {
-                console.log(response.data);
                 response.data.forEach(function(item, i, arr) {
                     if($scope.data.idUser == item.idUserRatingFK){
                         $scope.rating = item.rating;
@@ -92,7 +89,7 @@ angular.module("getInstruction",[])
                     textComment : $scope.comment
                 };
                 $scope.comment = "";
-                socket.emit('addComment', obj);
+                $scope.socket.emit('addComment', obj);
                 window.scrollTo(0,scrollHeight());
                 
             }
@@ -144,7 +141,6 @@ angular.module("getInstruction",[])
             });           
         };
         
-
 }).directive('starRating', starRating);
 
 function starRating() {

@@ -18,6 +18,7 @@
             <div class="tabs-menu">
                 <a id="tabs-prof" class="tm tabs-menu-active" ng-click="showProfile('prof')"><span>Профиль</span></a>
                 <a id="tabs-instr" class="tm tabs-menu-not-active" ng-click="showInstructions('instr')"><span>Инструкции</span></a>
+                <a ng-show="accessStatus" id="tabs-settings" class="tm tabs-menu-not-active" ng-click="showInstructions('settings')"><span>Настройки</span></a>
             </div>
             <hr>
             <div ng-show="tabs=='prof'" class="tabsInstr col-md-12">
@@ -25,10 +26,12 @@
                 <span ng-show="!countBadges" class="searchNote">Значков нет</span>
                 <br><br>
                 <p class="profileSectionTitle">Используемые теги</p>
-                <span ng-show="!countTags" class="searchNote">Отсутствуют</span>
-                <span ng-repeat="tag in tags">
-                    <a href="#!instructions/tag/{{tag}}"><span class="tagsProfile">{{tag}}</span></a>
-                </span>
+                <div class="col-md-6 listTagsProfile">
+                    <span ng-show="!countTags" class="searchNote">Отсутствуют</span>
+                    <span ng-repeat="tag in tags">
+                        <a href="#!instructions/tag/{{tag}}"><span class="tagsProfile">{{tag}}</span></a>
+                    </span>                    
+                </div>
             </div>            
             <div ng-show="tabs=='instr'" class="tabsInstr col-md-12">
                 <span ng-show="!countInstructions" class="searchNote">Инструкций нет</span>

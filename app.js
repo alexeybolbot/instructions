@@ -52,6 +52,9 @@ io.on('connection', function (socket) {
     socket.on('addComment', function (data) {
         addComment(data, io);
     });
+    socket.on('deleteOrBanUser', function (data) {
+        io.sockets.emit('exit', data);
+    });    
 });
 
 app.use(function(req, res, next) {

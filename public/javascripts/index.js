@@ -4,7 +4,8 @@ var app = angular.module('indexApp', [
     "writeInstruction",
     "getInstruction",
     "fullTextSearch",
-    "profile"
+    "profile",
+    "adminPanel"
 ]);
 
 app.config(function($routeProvider) {
@@ -26,6 +27,9 @@ app.config(function($routeProvider) {
     }).when("/instructions/:hub/:name", {
         templateUrl : "/html/instructions.html",
         controller : "instructionsCtrl"
+    }).when("/admin", {
+        templateUrl : "/html/adminPanel.html",
+        controller : "adminCtrl"
     });
     
 }).controller('indexCtrl', function($rootScope, $scope, $http) {
@@ -38,6 +42,18 @@ app.config(function($routeProvider) {
     $rootScope.tab = "last";
     $rootScope.name = "";
     $scope.showSearch = false;
+    $scope.admin = false;
+    
+    $scope.socket = io.connect('http://localhost');
+
+    $scope.socket.on('exit', function (data) {
+        if(data.idUser == $scope.data.idUser && (data.status == 1 || data.status == 0))
+            window.location = "http://localhost:3000/session/exit";
+        else if(data.idUser == $scope.data.idUser && (data.status == 2 && $scope.data.status != 2
+                || data.status == 3 && $scope.data.status != 3)){
+            changeTheStatusOfTheSession(data.status);
+        }
+    });
     
     var config = {
         apiKey: "AIzaSyBjdb8e9r1BjW1w_oD4E1fiJpYPcn4yVsM",
@@ -56,12 +72,27 @@ app.config(function($routeProvider) {
             styleSetUp(response);
     }, function myError(response) {
         console.log(response.statusText);
-    });        
+    });
+    
+    function changeTheStatusOfTheSession(status){
+        $http.post('session/changeStatus', {status : status}).then(function mySucces(response) {
+            $scope.data.status = status;
+            checkingAccessRightsToTheAdminPanel(status);
+            if(status == 2)
+                location.reload();            
+        });
+    }
 
     function dataSetUp(response){
         $scope.checkAuth = true;
         $scope.data = response.data;
-        styleSetUp(response);    
+        styleSetUp(response);
+        checkingAccessRightsToTheAdminPanel(response.data.status);
+    }
+    
+    function checkingAccessRightsToTheAdminPanel(status){
+        if(status == 3)
+            $scope.admin = true;
     }
 
     function styleSetUp(response){

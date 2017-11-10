@@ -55,3 +55,33 @@ hr{
 .instructionsUser p{
     color: white;
 }
+
+.ikonSearchAdminPanel{
+    background: #1F1F1F;
+}
+
+.adminPanel table, tr, td, th{
+    border: 1px solid rgb(17, 17, 17); 
+}
+
+.listFullName{
+    color: white;
+}
+
+.inputGroupSearch{
+    border: 1px solid #111;
+}
+
+.inputSearch{
+    background: #1F1F1F;
+    color: #fff;  
+}
+
+.search{
+    background: #1F1F1F;
+}
+
+.editableform {
+    background: #2D2E2D; 
+    border: 1px solid black;
+}

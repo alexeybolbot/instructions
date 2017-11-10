@@ -30,3 +30,19 @@ table, tr, td, th{
 .instructionsUser p{
     color: black;
 }
+
+.adminPanel table, tr, td, th{
+    border: 1px solid white; 
+}
+
+.inputGroupSearch{
+    border: 1px solid #ced4da;
+}
+
+.listFullName{
+    color: #444;
+}
+
+.search{
+    background: white;
+}

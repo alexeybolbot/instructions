@@ -105,4 +105,22 @@ router.get("/getInfoUserById/:id", function(req,res){
     });     
 });
 
+router.get("/", function(req,res){    
+    con.query("select * from user where user.status != 0", function(err, result){
+        res.send(result);      
+    });     
+});
+
+router.post("/updateStatus", function(req,res){    
+    con.query('UPDATE user SET ? WHERE user.idUser = "'+req.body.idUser+'"', {status:req.body.status}, function(err, result){        
+        res.send(200);      
+    });     
+});
+
+router.post("/delete", function(req,res){    
+    con.query('delete from user where user.idUser="'+req.body.idUser+'"', function(err, result){
+        res.send(200);      
+    });     
+});
+
 module.exports = router;

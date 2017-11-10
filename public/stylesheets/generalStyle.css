@@ -41,15 +41,12 @@ textarea, input, button{
 }
 
 .inputGroupSearch{
-    border: 1px solid #ced4da;
     height: 30px;
-    width: 500px;
 }
 
 .search{
     border-radius: 0;
     border: 0; 
-    background: white;
 }
 
 .inputSearch{
@@ -62,7 +59,6 @@ textarea, input, button{
 
 .btnSearch{
     cursor: pointer;
-    
 }
 
 .dropdown {
@@ -650,4 +646,64 @@ table{
 
 .tagsProfile:hover{
     background-color: #bae4ff;
+}
+
+/*table, tr, td, th{
+   border: 1px solid grey; 
+}*/
+
+.adminPanel img{
+    width: 40px;
+    height: 40px;
+}
+
+.adminPanel a{
+    text-decoration: none;
+}
+
+.listFullName{
+    font-weight: 600;
+    font-size: 15px;
+    font-family: "-apple-system",BlinkMacSystemFont,Arial,sans-serif;
+    line-height: 18px;
+    margin-left: 10px;
+}
+
+.listUsersAdmin .actionInstructionsProfile{
+    display:block;
+    visibility:hidden;
+}
+
+.listUsersAdmin:hover .actionInstructionsProfile{
+    visibility:visible;
+}
+
+.avatarAndFullName:hover span{
+    color: #548eaa;
+}
+
+.adminPanel .btnActionInstr{
+    width: 100px;
+}
+
+.listTagsProfile{
+    margin-left: -15px;
+}
+
+.columnStatus{
+    width: 300px;
+}
+
+.adminPanelTitle{
+    font-weight: 500;
+    font-family: 'Fira Sans',sans-serif;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    font-size: 22px;
+}
+
+.ikonSearchAdminPanel{
+    width: 25px;
+    padding:1px 5px 5px 5px;
 }

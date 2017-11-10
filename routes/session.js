@@ -16,4 +16,10 @@ router.post('/rememberMe', function(req, res) {
     res.send('200');
 }); 
 
+router.post('/changeStatus', function(req, res) {
+    req.session.status = req.body.status;
+    req.session.save();
+    res.send('200');
+});
+
 module.exports = router;
