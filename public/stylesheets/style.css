@@ -46,3 +46,17 @@ table, tr, td, th{
 .search{
     background: white;
 }
+
+.postStats{
+    color: black;
+}
+
+.badgeSort{
+    border: 1px solid #ced4da;
+    background-color: white;
+    color: #495057;
+}
+
+.filterAndSortPanel{
+    border: 1px solid rgba(0,0,0,.1);
+}

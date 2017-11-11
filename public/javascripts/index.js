@@ -37,7 +37,7 @@ app.config(function($routeProvider) {
     $scope.style = "stylesheets/style.css";
     $scope.styleNavbar = "light";
     $scope.checkAuth = false;
-    $scope.data = null;
+    $rootScope.data = null;
     $rootScope.hub = "all";
     $rootScope.tab = "last";
     $rootScope.name = "";
@@ -47,10 +47,10 @@ app.config(function($routeProvider) {
     $scope.socket = io.connect('http://localhost');
 
     $scope.socket.on('exit', function (data) {
-        if(data.idUser == $scope.data.idUser && (data.status == 1 || data.status == 0))
+        if(data.idUser == $rootScope.data.idUser && (data.status == 1 || data.status == 0))
             window.location = "http://localhost:3000/session/exit";
-        else if(data.idUser == $scope.data.idUser && (data.status == 2 && $scope.data.status != 2
-                || data.status == 3 && $scope.data.status != 3)){
+        else if(data.idUser == $rootScope.data.idUser && (data.status == 2 && $rootScope.data.status != 2
+                || data.status == 3 && $rootScope.data.status != 3)){
             changeTheStatusOfTheSession(data.status);
         }
     });
@@ -76,7 +76,7 @@ app.config(function($routeProvider) {
     
     function changeTheStatusOfTheSession(status){
         $http.post('session/changeStatus', {status : status}).then(function mySucces(response) {
-            $scope.data.status = status;
+            $rootScope.data.status = status;
             checkingAccessRightsToTheAdminPanel(status);
             if(status == 2)
                 location.reload();            
@@ -85,7 +85,7 @@ app.config(function($routeProvider) {
 
     function dataSetUp(response){
         $scope.checkAuth = true;
-        $scope.data = response.data;
+        $rootScope.data = response.data;
         styleSetUp(response);
         checkingAccessRightsToTheAdminPanel(response.data.status);
     }
@@ -114,7 +114,7 @@ app.config(function($routeProvider) {
 
     function saveStyle(timesOfDay){
         if($scope.checkAuth)
-            $http.post('users/saveStyle', {id:$scope.data.idUser, timesOfDay:timesOfDay});
+            $http.post('users/saveStyle', {id:$rootScope.data.idUser, timesOfDay:timesOfDay});
         else
             $http.post('users/saveStyle', {timesOfDay:timesOfDay});
     }

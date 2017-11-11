@@ -155,12 +155,19 @@ textarea, input, button{
 
 .navicon{
     height: 30px;
+    border-radius: 3px;
 }
 
 .navwrite{
+    color: inherit;
+    text-decoration: none;
     padding: 0 10px;
+    border: 1px solid #75aeca;
+    color: #548eaa;
+    border-radius: 3px;
     height: 30px;
-    border-radius: 0;    
+    font-size: 13px;
+    cursor: pointer;
 }
 
 .cont{
@@ -648,10 +655,6 @@ table{
     background-color: #bae4ff;
 }
 
-/*table, tr, td, th{
-   border: 1px solid grey; 
-}*/
-
 .adminPanel img{
     width: 40px;
     height: 40px;
@@ -706,4 +709,120 @@ table{
 .ikonSearchAdminPanel{
     width: 25px;
     padding:1px 5px 5px 5px;
+}
+
+.userFirstName{
+    margin-bottom: 5px;
+    display: block;
+}
+
+.chooseAvatar{
+    display: block;
+    margin-bottom: 7px;
+    font-weight: 700;
+    font-size: 13px;
+    font-family: Arial,'Helvetica Neue',Helvetica,sans-serif;
+    line-height: 13px;
+}
+
+.btnChooseAvatar{
+    margin-bottom: 13px;
+    cursor: pointer;
+}
+
+.chosenImg{
+    width: 50px;
+    height: 50px;
+    margin-bottom: 13px;
+}
+
+.saveChosenImg{
+    border: 1px solid #c9c9c9;
+    background-color: #f4f4f4;
+    box-shadow: none;
+    color: #464646;
+    cursor: pointer;
+    user-select: none;
+    -webkit-appearance: none;
+    touch-action: manipulation;
+    padding: 0 13px;
+    height: 32px;
+    border-radius: 3px;
+    font-size: 13px;
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    font-weight: 500;
+    font-family: "-apple-system",BlinkMacSystemFont,Arial,sans-serif;
+}
+
+.postStats{
+    font-size: 20px;
+     
+}
+
+.starAvRating{
+    color: #e3cf7a;
+}
+
+.countComments{
+    color: #138BC3;
+}
+
+.filterAndSort{
+    margin-bottom: 15px;
+}
+.selectFilter{
+    text-align: center;
+    padding: 0 25px 1px 10px;
+    height: 25px;
+    font-size: 15px;
+}
+
+.badgeSort{
+    height: 25px;
+    font-size: 15px;
+    cursor: pointer;
+    font-weight: 300; 
+}
+
+.custom-select{
+    vertical-align: bottom;
+}
+
+.indentation{
+    margin-left: 20px;
+}
+
+.sortorder:after {
+  content: '\25b2';
+}
+
+.sortorder.reverse:after {
+  content: '\25bc';
+}
+
+.filterAndSortPanel{
+    padding: 10px;
+}
+
+.btnReset{
+    float: right;
+}
+
+.writeByUser{
+    float: right;
+    color: inherit;
+    text-decoration: none;
+    color: #fff;
+    padding: 0 13px;
+    height: 36px;
+    border-radius: 3px;
+    font-size: 13px;
+    background-color: #7aa1bd;
+    box-shadow: none;
+    cursor: pointer;
+    
 }

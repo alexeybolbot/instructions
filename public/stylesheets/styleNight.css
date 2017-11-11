@@ -85,3 +85,22 @@ hr{
     background: #2D2E2D; 
     border: 1px solid black;
 }
+
+.postStats{
+    color: white;
+}
+
+.selectFilter{
+    border: 1px solid black;
+    background-color: #2B2B2B;
+    color: white;
+}
+
+.badgeSort{
+    border: 1px solid black;
+    background-color: #2B2B2B;   
+}
+
+.filterAndSortPanel{
+    border: 1px solid #333333;
+}

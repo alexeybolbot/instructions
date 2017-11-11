@@ -123,4 +123,20 @@ router.post("/delete", function(req,res){
     });     
 });
 
+router.post("/updateFullName", function(req,res){    
+    con.query('UPDATE user SET ? WHERE user.idUser = "'+req.body.idUser+'"', {familyName:req.body.familyName}, function(err, result){ 
+        req.session.familyName = req.body.familyName;
+        req.session.save();
+        res.send(200);      
+    });     
+});
+
+router.post("/updatePhoto", function(req,res){    
+    con.query('UPDATE user SET ? WHERE user.idUser = "'+req.body.idUser+'"', {photo:req.body.photo}, function(err, result){ 
+        req.session.photo = req.body.photo;
+        req.session.save();
+        res.send(200);      
+    });     
+});
+
 module.exports = router;

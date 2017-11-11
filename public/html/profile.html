@@ -1,15 +1,22 @@
 <div class="container cont">
     <div class="row">
-        <div class="headProfile">
-            <img class="imageProfile" src={{user.photo}}>
+        <div class="col-md-3 col-sm-6 col-xs-11">
+            <div class="row">
+                <div class="headProfile">
+                    <img class="imageProfile" src={{user.photo}}>
+                </div>
+                <div class="headProfile">
+                    <div>
+                        <span class="nicknameProfile">{{user.familyName[0]}}</span>
+                    </div>
+                    <div>
+                        <span class="nicknameProfile">{{user.familyName[1]}}</span>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="headProfile">
-            <div>
-                <span class="nicknameProfile">{{user.familyName[0]}}</span>
-            </div>
-            <div>
-                <span class="nicknameProfile">{{user.familyName[1]}}</span>
-            </div>
+        <div class="col-md-9 col-sm-6 col-xs-1">
+            <button type="button" class="btn btn-outline-info writeByUser">Написать от имени пользователя</button>
         </div>
     </div>
     <br><br>
@@ -18,7 +25,7 @@
             <div class="tabs-menu">
                 <a id="tabs-prof" class="tm tabs-menu-active" ng-click="showProfile('prof')"><span>Профиль</span></a>
                 <a id="tabs-instr" class="tm tabs-menu-not-active" ng-click="showInstructions('instr')"><span>Инструкции</span></a>
-                <a ng-show="accessStatus" id="tabs-settings" class="tm tabs-menu-not-active" ng-click="showInstructions('settings')"><span>Настройки</span></a>
+                <a ng-show="accessSettings" id="tabs-settings" class="tm tabs-menu-not-active" ng-click="showInstructions('settings')"><span>Настройки</span></a>
             </div>
             <hr>
             <div ng-show="tabs=='prof'" class="tabsInstr col-md-12">
@@ -35,6 +42,33 @@
             </div>            
             <div ng-show="tabs=='instr'" class="tabsInstr col-md-12">
                 <span ng-show="!countInstructions" class="searchNote">Инструкций нет</span>
+                <div ng-show="countInstructions" class="filterAndSort">
+                    <div class="col-md-12 filterAndSortPanel">
+                        Фильтр:
+                        <select class="custom-select selectFilter" ng-model="selectTag" ng-change="filterInstr('Tag', selectTag)">
+                            <option value="">По тегу</option>
+                            <option value="{{tag}}" ng-repeat="tag in tags">{{tag}}</option>
+                        </select>
+                        <select class="custom-select selectFilter" ng-model="selectSubject" ng-change="filterInstr('Subject', selectSubject)">
+                            <option value="">По теме</option>
+                            <option value="{{subject}}" ng-repeat="subject in subjects">{{subject}}</option>
+                        </select>
+                        <span class="indentation"></span>
+                        Сортировка:
+                        <span class="badge badgeSort" ng-click="sortInstr('Rating')">
+                            <i class="fa fa-star starAvRating" aria-hidden="true"></i> 
+                            <b>По рейтингу</b>
+                            <span class="sortorder" ng-show="propertyName === 'Rating'" ng-class="{reverse: reverse}"></span>
+                        </span>
+                        <span class="badge badgeSort" ng-click="sortInstr('Comments')">
+                            <i class="fa fa-comments countComments" aria-hidden="true"></i> 
+                            <b>По комментариям</b>
+                            <span class="sortorder" ng-show="propertyName === 'Comments'" ng-class="{reverse: reverse}"></span>
+                        </span>
+                        <span class="indentation"></span>
+                        <span class="badge badgeSort btnReset" ng-click="reset()"><b>Сбросить</b></span>
+                    </div>
+                </div>
                 <div class="instructionsUser" ng-repeat="i in instructions">
                     <div class="row">
                         <div class="col-md-4">
@@ -43,6 +77,11 @@
                         <div class="col-md-6">
                             <a href="#!instruction/{{i.idInstruction}}">
                                 <h1>{{i.heading}}</h1>
+                                <span class="postStats">
+                                    <i class="fa fa-star starAvRating" aria-hidden="true"></i> {{i.avRating}}
+                                    <i class="fa fa-comments countComments" aria-hidden="true"></i> {{i.countComments}}
+                                </span>
+                                <br>
                                 <span class="postTime">{{i.date}}</span>                    
                                 <p>{{i.shortDescription}}</p>
                             </a>
@@ -56,6 +95,40 @@
                     </div>
                 </div>
             </div>
+            <div ng-show="tabs=='settings'" class="tabsInstr col-md-12">
+                <h3 class="adminPanelTitle">Персональная информация</h3>  
+                <br>
+                <span class="userFirstName">Имя: <a href="#" id="userFirstName"></a></span>
+                Фамилия: <a href="#" id="userLastName"></a>
+                <br><br><br>
+                <h3 class="adminPanelTitle">Аватар</h3>
+                <span class="chooseAvatar">Выберите изображение:</span>
+                <span class="badge badge-secondary btnChooseAvatar" ng-click="showDragAndDropImage()"><i class="fa fa-folder-open" aria-hidden="true"></i> Выберите файл</span>
+                <br>
+                <img src="{{user.chosenImg}}" class="chosenImg">
+                <br>
+                <button class="saveChosenImg" ng-click="saveChosenImg()">Сохранить</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="DragAndDropImage" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content DragAndDropImage">
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <div ngf-drop ngf-select ng-model="files" class="drop-box" 
+                ngf-drag-over-class="'dragover'" ngf-multiple="true" ngf-allow-dir="true"
+                accept="image/*" ngf-pattern="'image/*'">
+                    <img src="https://d30y9cdsu7xlg0.cloudfront.net/png/49665-200.png">
+                    <p><b>Drop images here or click to upload</b></p></div>
+                <div id="progressUploadImage">
+                    <div id="barUploadImage"></div>
+                </div>
+             </div>
         </div>
     </div>
 </div>

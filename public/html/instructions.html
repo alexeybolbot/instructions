@@ -15,7 +15,14 @@
                     <span class="user-info__nickname">{{i.familyName}}</span>                
                 </a>
                 <span class="post__time">{{i.date}}</span>
-                <h1 class="post_title_tex">{{i.heading}}</h1>
+                <h1 class="post_title_tex">
+                    {{i.heading}}
+                    <br>
+                    <span class="postStats">
+                        <i class="fa fa-star starAvRating" aria-hidden="true"></i> {{i.avRating}}
+                        <i class="fa fa-comments countComments" aria-hidden="true"></i> {{i.countComments}}
+                    </span>                
+                </h1>
                 <span ng-repeat="tag in i.tags">
                     <a ng-click="showPublicationsByTag(tag)"><span class="tags">{{tag}}</span></a>
                 </span>
@@ -24,7 +31,7 @@
                 <br><br>
                 <p>{{i.shortDescription}}</p>
                 <a href="#!instruction/{{i.idInstruction}}"><button type="button" class="btn btn-outline-info">Читать дальше <i class="fa fa-long-arrow-right" aria-hidden="true"></i></button></a>
-                <br><br>            
+                <br><br>
             </div>
         </div>
     </div>
