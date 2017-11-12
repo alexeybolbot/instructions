@@ -27,6 +27,18 @@ router.post('/saveStyle', function(req,res){
     res.send(req.session.style);
 });
 
+router.post('/saveLanguage', function(req,res){
+    req.session.language = req.body.language;
+    if(req.session.idUser){
+        con.query('UPDATE user SET ? WHERE idUser = "'+req.body.id+'"', {language:req.body.language}, function(err, result){
+            req.session.save(); 
+        });
+    }
+    else
+        req.session.save();
+    res.send(200);
+});
+
 router.post('/regist', function(req,res){   
     con.query('SELECT * FROM user WHERE email="'+req.body.email+'"', function(err, result) {
         if(result.length == 0)

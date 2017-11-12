@@ -26,6 +26,10 @@
         <script src="http://localhost:80/socket.io/socket.io.js"></script>
         <script src="https://docraptor.com/docraptor-1.0.0.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/jquery-editable/js/jquery-editable-poshytip.min.js"></script> 
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-cookies.js"></script>
+        <script src="https://rawgithub.com/angular-translate/bower-angular-translate/master/angular-translate.min.js"></script>
+        <script src="https://rawgithub.com/angular-translate/bower-angular-translate-storage-cookie/master/angular-translate-storage-cookie.js"></script>
+        <script src="https://rawgithub.com/angular-translate/bower-angular-translate-loader-static-files/master/angular-translate-loader-static-files.js"></script>             
         <script src="javascripts/index.js"></script>
         <script src="javascripts/instructions.js"></script>
         <script src="javascripts/writeInstruction.js"></script>
@@ -35,6 +39,11 @@
         <script src="javascripts/adminPanel.js"></script>
     </head>
     <body class="night">
+        
+ <!-- <h1 translate>HEADLINE</h1>{{'HEADLINE' | translate}}
+  <button ng-click="switchLanguage('de_DE')" translate="LANG_DE_DE"></button>
+  <button ng-click="switchLanguage('en_US')" translate="LANG_EN_US"></button>   
+ -->       
         <nav class="navbar navbar-expand-md navbar-{{styleNavbar}} navbarIndex night-l">
             <div class="container">
                 <a class="navbar-brand" href="/">
@@ -46,28 +55,28 @@
                 <div class="collapse navbar-collapse" id="navbarText">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" href="#">Публикации <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="#">{{'PUBLICATIONS' | translate}}<span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Пользователи</a>
+                            <a class="nav-link" href="#">{{'USERS' | translate}}</a>
                         </li>
                     </ul>                   
                     <div ng-show="showSearch" class="input-group inputGroupSearch mr-sm-2">
                         <button class="search"><a href="#!fullTextSearch/{{dataOfSearch}}"><i class="fa fa-search settings btnSearch" aria-hidden="true"></i></a></button>
-                        <input type="text" placeholder="Поиск" class="search inputSearch" ng-model="dataOfSearch">
+                        <input type="text" placeholder="{{'SEARCH' | translate}}" class="search inputSearch" ng-model="dataOfSearch">
                         <button class="search"><i class="fa fa-times settings btnSearch" aria-hidden="true" ng-click="closeInputSearch()"></i></button>
                     </div>                 
                     <i ng-show="!showSearch" class="fa fa-search mr-sm-3 ikonSearch settings btnSearch" aria-hidden="true" ng-click="openInputSearch()"></i>
                     <li class="nav-item dropdown">
-                        <i class="fa fa-cog mr-sm-3 settings" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Настройки"></i>
+                        <i class="fa fa-cog mr-sm-3 settings" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="{{'SETTINGS' | translate}}"></i>
                         <div class="dropdown-menu night-l navbarDropdownMenuLink" aria-labelledby="navbarDropdownMenuLink">                            
                             <div>
                                 <label>
                                     RU
-                                    <input type="radio" class="option-input radio" name="example" checked />
+                                    <input type="radio" class="option-input radio" name="language" id="ru_BY" ng-click="switchLanguage('ru_BY')" checked />
                                 </label>
                                 <label>
-                                    <input type="radio" class="option-input radio" name="example" />
+                                    <input type="radio" class="option-input radio" name="language" id="en_US" ng-click="switchLanguage('en_US')"/>
                                     EN
                                 </label>
                                 <br>
@@ -83,14 +92,14 @@
                         </div>
                     </li>
                     <div class="btn-group">
-                        <a class="signIn" href="/authorization" ng-show="!checkAuth">Войти</a>
-                        <a href="#!write/write/{{data.idUser}}"><button type="button" class="btn btn-outline-info navwrite mr-sm-2" ng-show="checkAuth">Написать</button></a>
+                        <a class="signIn" href="/authorization" ng-show="!checkAuth">{{'SIGN_IN' | translate}}</a>
+                        <a href="#!write/write/{{data.idUser}}"><button type="button" class="btn btn-outline-info navwrite mr-sm-2" ng-show="checkAuth">{{'WRITE' | translate}}</button></a>
                         <img src="{{data.photo}}" class="navicon" ng-show="checkAuth" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="{{data.familyName}}">
                         <div class="dropdown-menu night-l navbarDropdownProfile">                            
-                            <a class="dropdown-item" href="#!profile/{{data.idUser}}">Профиль</a>
-                            <a ng-show="admin" class="dropdown-item" href="#!admin">Админка</a>
+                            <a class="dropdown-item" href="#!profile/{{data.idUser}}">{{'PROFILE' | translate}}</a>
+                            <a ng-show="admin" class="dropdown-item" href="#!admin">{{'ADMIN_PANEL' | translate}}</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="/session/exit">Выход</a>   
+                            <a class="dropdown-item" href="/session/exit">{{'SIGN_OUT' | translate}}</a>   
                         </div>
                     </div>                   
                 </div>

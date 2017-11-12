@@ -6,52 +6,52 @@
                     <button type="button" class="close" ng-click="hideAlertPublishInstruction()">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    Изменения сохранены.
+                    {{'CHANGES_SAVED' | translate}}
                 </div>                
             </div>
-            <label>Заголовок:</label>
+            <label>{{'HEADING' | translate}}:</label>
             <input type="text" class="form-control" ng-model="headingInput1">
-            <div class="description">Заголовок должен быть наполнен смыслом, чтобы можно было понять, о чем будет публикация.</div>
+            <div class="description">{{'ABOUT_THAT_HEADINGS' | translate}}</div>
             <br>
-            <label>Краткое описание:</label>
+            <label>{{'SHORT_DESCRIPTION' | translate}}:</label>
             <input type="text" class="form-control" ng-model="shortDescriptionInput1">
             <br>        
-            <label>Превью:</label>
+            <label>{{'PREVIEW' | translate}}:</label>
             <input type="text" class="form-control" id="previewInput1" ng-model="previewInput1" ng-click="preview()">
-            <div class="description">Изображение, дающее представление о содержании инструкции.</div>
+            <div class="description">{{'ABOUT_THAT_PREVIEW' | translate}}</div>
             <br>
-            <label>Тема:</label>
+            <label>{{'SUBJECT' | translate}}:</label>
             <select class="form-control" ng-model="subjectSelect1">
-                <option>Электроника</option>
+                <option>{{'ELECTRONICS' | translate}}</option>
                 <option>Досуг и быт</option>
             </select>
             <br>    
-            <label>Тэги:</label>
+            <label>{{'TAGS' | translate}}:</label>
             <datalist id="tagsList">
                 <option ng-repeat="tag in tags">{{tag}}</option>
             </datalist>
             <input type="text" class="form-control" list="tagsList" ng-model="selectionTag">
-            <div class="description"><span class="badge badge-dark btnAddTag" ng-click="addTag()">Добавить</span> Укажите от 1 до 5 тэгов.</div>
+            <div class="description"><span class="badge badge-dark btnAddTag" ng-click="addTag()">{{'ADD' | translate}}</span> {{'SPECIFY_TAGS' | translate}}</div>
             <span ng-repeat="selectedTag in selectedTags">
                 <span class="badge badge-secondary">{{selectedTag}}&nbsp;&nbsp;&nbsp;&nbsp;<a class="trashTag" ng-click="deleteTag(selectedTag)"><i class="fa fa-trash-o" aria-hidden="true"></i></a></span>
             </span>                                                
             <br>        
-            <label>Текст:</label>
+            <label>{{'TEXT' | translate}}:</label>
             <textarea id="text"></textarea>
             <br>
             <div class="buttons blue_buttons_panel">
-                <input type="submit" class="btn_blue_buttons_panel" name="submit" ng-click="editInstruction()" value="Редактировать">
-                <input type="button" class="btn_blue_buttons_panel" ng-click="getFullPostPreview()" value="Предпросмотр">
+                <input type="submit" class="btn_blue_buttons_panel" name="submit" ng-click="editInstruction()" value="{{'EDIT' | translate}}">
+                <input type="button" class="btn_blue_buttons_panel" ng-click="getFullPostPreview()" value="{{'BTN_PREVIEW' | translate}}">
             </div>
             <div class="row">
                 <article class="col-md-9" style="padding: 30px"></article>
             </div>
         </div>
         <div class="col-md-9" ng-show="!showCreateInstructionOrPreview">
-            <button type="button" class="btn btn-outline-info" ng-click="backward()"><i class="fa fa-long-arrow-left" aria-hidden="true"></i> Назад</button>
+            <button type="button" class="btn btn-outline-info" ng-click="backward()"><i class="fa fa-long-arrow-left" aria-hidden="true"></i> {{'BACK' | translate}}</button>
             <br><br>
             <div class="collapsed-form-FullPreview">
-                <h4>Вид публикации в свернутом формате</h4>
+                <h4>{{'VIEW_OF_PUBLICATION_COLLAPSED' | translate}}</h4>
                 <a>
                     <img class="image-mini" src={{user.photo}}>
                     <span class="user-info__nickname">{{user.familyName}}</span>                
@@ -65,11 +65,10 @@
                 <img src={{previewInput1}}>
                 <br><br>
                 <p>{{shortDescriptionInput1}}</p>
-                <button type="button" class="btn btn-outline-info">Читать дальше <i class="fa fa-long-arrow-right" aria-hidden="true"></i></button>
                 <br>                
             </div>
             <br>
-            <h4>Вид публикации в развёрнутом формате</h4>
+            <h4>{{'VIEW_OF_PUBLICATION_EXPANDED' | translate}}</h4>
             <a>
                 <img class="image-mini" src={{user.photo}}>
                 <span class="user-info__nickname">{{user.familyName}}</span>                
@@ -86,10 +85,10 @@
         <div class="col-md-3 ">
             <div class="default-block default-block_sidebar">
                 <div class="default-block__header">
-                    <span class="default-block__header-title">О редактировании инструкции</span>
+                    <span class="default-block__header-title">{{'ABOUT_EDITING_INSTUCTIONS_HEADING' | translate}}</span>
                 </div>
                 <div class="default-block__content sidebar-block">
-                    <p class="sidebar-block__paragraph">При редактировании инструкции, нажимайте кнопку "Предпросмотр", чтобы видеть текущий результат.</p>
+                    <p class="sidebar-block__paragraph">{{'ABOUT_EDITING_INSTUCTIONS_TEXT' | translate}}</p>
                 </div>
             </div>
         </div>

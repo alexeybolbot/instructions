@@ -1,6 +1,6 @@
 <div class="container cont">
-    <h1 class="headResultSearch">Результаты поиска</h1>
-    <span class="searchNote">По запросу <b>«{{text}}»</b> найдено {{countResultSearch}} инструкций</span>
+    <h1 class="headResultSearch">{{'SEARCHING_RESULTS' | translate}}</h1>
+    <span class="searchNote">{{'ON_REQUEST' | translate}} <b>«{{text}}»</b> {{'FOUND' | translate}} {{countResultSearch}} {{'INSTRUCTIONS' | translate}}</span>
     <br><br><br>
     <div class="row">
         <div class="col-md-10 searchInstructions" ng-repeat="i in instructions">

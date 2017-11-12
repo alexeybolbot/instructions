@@ -16,13 +16,13 @@
                 <article id="FullPreview"></article>
             </div>
             <div class="PDF">
-                <span>Сохранить в формате PDF</span>
+                <span>{{'SAVE_AS_PDF' | translate}}</span>
                 <a ng-click="generatePDF()">
                     <img class="btnGeneratePDF" src="http://www.legion490.com/index_htm_files/download_pdf_button.png">
                 </a>
             </div>
             <div class="PDF">
-                <span>Рейтинг <b>{{avRating}}</b> / 5</span>
+                <span>{{'RATING' | translate}} <b>{{avRating}}</b> / 5</span>
                 <div star-rating class="blockStars" ng-model="rating" max="5" readonly="isReadonly" on-rating-select="rateFunction(rating)"></div>
             </div>            
             <hr>
@@ -35,11 +35,11 @@
     <div class="row">
         <div class="col-md-9 comments">
             <textarea id="b-comments-reply__editable" ng-model="comment"></textarea>
-            <button type="button" class="btn btn-outline-info navwrite" ng-click="addComment()">Отправить</button>
+            <button type="button" class="btn btn-outline-info navwrite" ng-click="addComment()">{{'SEND' | translate}}</button>
             <br><br>
-            <span class="comment-section__head-title">Комментарии</span>
+            <span class="comment-section__head-title">{{'COMMENTS' | translate}}</span>
             <hr>
-            <span class="notComments" ng-show="!checkComments">Нет комментариев</span>
+            <span class="notComments" ng-show="!checkComments">{{'NO_COMMENTS' | translate}}</span>
             <div ng-repeat="comm in comments" class="contentComment">
                 <div class="commentHead">
                     <a>

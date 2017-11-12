@@ -1,5 +1,6 @@
 var app = angular.module('indexApp', [
     "ngRoute",
+    "pascalprecht.translate",
     "instructions",
     "writeInstruction",
     "getInstruction",
@@ -8,7 +9,7 @@ var app = angular.module('indexApp', [
     "adminPanel"
 ]);
 
-app.config(function($routeProvider) {
+app.config(function($routeProvider,$translateProvider) {
     $routeProvider.when("/", {
         templateUrl : "/html/instructions.html",
         controller : "instructionsCtrl"
@@ -35,7 +36,24 @@ app.config(function($routeProvider) {
         controller : "adminCtrl"
     });
     
-}).controller('indexCtrl', function($rootScope, $scope, $http) {
+    $translateProvider.registerAvailableLanguageKeys(['ru_BY', 'en_US'], {
+    'en_US': 'en_US',
+    'en_UK': 'en_US',
+    'ru_BY': 'ru_BY',
+    'ru_RU': 'ru_BY',    
+    'en': 'en_US',
+    'ru': 'ru_BY'
+    });
+
+    $translateProvider.useStaticFilesLoader({
+      prefix: 'json/lang_',
+      suffix: '.json'
+    });
+
+    $translateProvider.preferredLanguage('ru_BY');
+    $translateProvider.fallbackLanguage("en_US");    
+    
+}).controller('indexCtrl', function($rootScope, $scope, $http, $translate) {
          
     $scope.style = "stylesheets/style.css";
     $scope.styleNavbar = "light";
@@ -90,6 +108,7 @@ app.config(function($routeProvider) {
         $scope.checkAuth = true;
         $rootScope.data = response.data;
         styleSetUp(response);
+        $scope.switchLanguage(response.data.language);
         checkingAccessRightsToTheAdminPanel(response.data.status);
     }
     
@@ -135,6 +154,15 @@ app.config(function($routeProvider) {
     
     $scope.closeInputSearch = function(){
         $scope.showSearch = false;
-    };    
+    };   
+    
+    $scope.switchLanguage = function(key) {
+        $translate.use(key);
+        document.getElementById(key).checked = true;
+        if($scope.checkAuth)
+            $http.post('users/saveLanguage', {id:$rootScope.data.idUser, language:key});
+        else
+            $http.post('users/saveLanguage', {language:key});      
+    };
 
 });
