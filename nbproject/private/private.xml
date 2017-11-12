@@ -5,10 +5,12 @@
         <group>
             <file>file:/D:/itransition/Курсач/Instructions/public/stylesheets/generalStyle.css</file>
             <file>file:/D:/itransition/Курсач/Instructions/public/javascripts/index.js</file>
-            <file>file:/D:/itransition/Курсач/Instructions/routes/users.js</file>
             <file>file:/D:/itransition/Курсач/Instructions/public/javascripts/profile.js</file>
-            <file>file:/D:/itransition/Курсач/Instructions/public/html/instructions.html</file>
+            <file>file:/D:/itransition/Курсач/Instructions/public/html/writeInstruction.html</file>
             <file>file:/D:/itransition/Курсач/Instructions/public/html/profile.html</file>
+            <file>file:/D:/itransition/Курсач/Instructions/views/index.html</file>
+            <file>file:/D:/itransition/Курсач/Instructions/public/javascripts/writeInstruction.js</file>
+            <file>file:/D:/itransition/Курсач/Instructions/public/html/editInstruction.html</file>
         </group>
     </open-files>
 </project-private>

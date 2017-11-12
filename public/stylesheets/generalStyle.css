@@ -214,6 +214,11 @@ textarea, input, button{
     margin: 25px;
 }
 
+.dropboxPreviou{
+    width: 100%;
+    margin: 10px 0 10px 0;
+}
+
 .drop-box:hover{
     background: #e7eaee;
     border-color: #c0cad2;
@@ -237,7 +242,7 @@ textarea, input, button{
     background-color: white;
 }
 
-#barUploadImage{
+#barUploadImage, #barUploadImage2{
     width: 0%;
     height: 5px;
     background-color: #4CAF50;
@@ -625,6 +630,15 @@ table{
     padding: 0;
 }
 
+.tabsInstr img{
+    max-width: 100%; 
+}
+
+.previewImg{
+    display: block;
+    margin-bottom: 10px;
+}
+
 .profileSectionTitle{
     font-weight: 700;
     font-size: 14px;
@@ -822,7 +836,36 @@ table{
     border-radius: 3px;
     font-size: 13px;
     background-color: #7aa1bd;
+    border: 1px solid #7aa1bd;
     box-shadow: none;
     cursor: pointer;
-    
+}
+
+.moveTitle{
+    font-size: 21px;
+    line-height: 1.3333;
+    font-weight: 400;
+    display: inline;
+    padding: 0;
+}
+
+.btnPrevMove, .btnNextMove{
+    position: absolute;
+    height: 25px;
+    padding: 0 5px;
+    font-size: 15px;
+    margin-top: 3px;
+    /*margin-left: 10px;*/
+    border: 1px solid #b2b2b2;
+    background: linear-gradient(to top, #cecece, white);
+    border-radius: 3px;
+    min-width: 130px;
+}
+
+.btnPrevMove{
+   margin-left: 10px; 
+}
+
+.btnNextMove{
+    margin-left: 145px;
 }

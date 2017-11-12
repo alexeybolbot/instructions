@@ -12,8 +12,11 @@ app.config(function($routeProvider) {
     $routeProvider.when("/", {
         templateUrl : "/html/instructions.html",
         controller : "instructionsCtrl"
-    }).when("/write/:idInstr/:idUser", {
+    }).when("/write/:action/:idUser",{
         templateUrl : "/html/writeInstruction.html",
+        controller : "writeInstructionCtrl"
+    }).when("/edit/:action/:idInstr/:idUser", {
+        templateUrl : "/html/editInstruction.html",
         controller : "writeInstructionCtrl"
     }).when('/instruction/:id',{
         templateUrl:'html/instruction.html',

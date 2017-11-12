@@ -30,7 +30,10 @@ function tuningSqlScript(req){
                 where instructions.subject='"+req.body.name+"' ORDER BY instructions.avRating DESC LIMIT 10";    
 }
 
-router.post('/add', function(req, res, next) {
+router.post('/add', function(req, res, next) {  
+    con.query('update user SET user.countInstructions=user.countInstructions+1 \n\
+        where idUser="'+req.body.idUserFK+'"', function(err, result) {
+    });    
     con.query('INSERT INTO instructions SET ?', req.body, function(err, result) {
         addTags(req.body, result.insertId, res);
     });

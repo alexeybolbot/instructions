@@ -14,6 +14,7 @@ angular.module("profile",[])
         $scope.countBadges = false;
         $scope.countTags = false;
         $scope.accessSettings = false;
+        $scope.btnWriteAsUser = false;
         
         $.fn.editable.defaults.mode = 'inline';
                         
@@ -29,6 +30,8 @@ angular.module("profile",[])
                    $scope.accessStatus = true; 
                 if($scope.data.idUser == $routeParams.id)
                     $scope.accessSettings = true;
+                if($scope.data.status == 3 && $scope.data.idUser != $routeParams.id)
+                    $scope.btnWriteAsUser = true;
             }
         }
         
@@ -246,7 +249,11 @@ angular.module("profile",[])
         };
         
         $scope.updateInstruction = function(idInstr){
-            window.location = "http://localhost:3000/#!write/"+idInstr+"/"+$routeParams.id;
-        };        
+            window.location = "http://localhost:3000/#!edit/edit/"+idInstr+"/"+$routeParams.id;
+        };    
+        
+        $scope.writeAsUser = function(){
+            window.location = "http://localhost:3000/#!write/write/"+$routeParams.id;
+        };
         
 });

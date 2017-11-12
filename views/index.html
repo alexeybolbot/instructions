@@ -84,7 +84,7 @@
                     </li>
                     <div class="btn-group">
                         <a class="signIn" href="/authorization" ng-show="!checkAuth">Войти</a>
-                        <a href="#!write/0/{{data.idUser}}"><button type="button" class="btn btn-outline-info navwrite mr-sm-2" ng-show="checkAuth">Написать</button></a>
+                        <a href="#!write/write/{{data.idUser}}"><button type="button" class="btn btn-outline-info navwrite mr-sm-2" ng-show="checkAuth">Написать</button></a>
                         <img src="{{data.photo}}" class="navicon" ng-show="checkAuth" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="{{data.familyName}}">
                         <div class="dropdown-menu night-l navbarDropdownProfile">                            
                             <a class="dropdown-item" href="#!profile/{{data.idUser}}">Профиль</a>

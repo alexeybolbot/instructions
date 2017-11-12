@@ -6,15 +6,22 @@ angular.module("writeInstruction",['ngFileUpload'])
         function accessCheck(){
             if(!$scope.data)
                 window.location = "http://localhost:3000/";
-            else if($routeParams.idInstr != 0 && $scope.data.status != 3){
+            else if($routeParams.action == 'edit' && $scope.data.status != 3){
                 if($routeParams.idUser != $scope.data.idUser)
                     window.location = "http://localhost:3000/";
                 else{
                     getUserAndInstruction();
                 }
             }
-            else if($routeParams.idInstr != 0 && $scope.data.status == 3){
+            else if($routeParams.action == 'edit' && $scope.data.status == 3){
                 getUserAndInstruction();
+            }
+            else if($routeParams.action == 'write' && $routeParams.idUser != $scope.data.idUser && $scope.data.status != 3)
+                window.location = "http://localhost:3000/";
+            else if($routeParams.action == 'write'){
+                getUser($routeParams.idUser);
+                installMarkdown();
+                getTags();
             }
         }
         
@@ -26,6 +33,11 @@ angular.module("writeInstruction",['ngFileUpload'])
         function urlCheck(response){
             if(response.data.length == 0)
                 window.location = "http://localhost:3000/";
+            else{
+                $scope.user.idUser = response.data[0].idUser;
+                $scope.user.photo = response.data[0].photo;
+                $scope.user.familyName = response.data[0].familyName;
+            }
         }
         
         function getUser(id){
@@ -81,13 +93,13 @@ angular.module("writeInstruction",['ngFileUpload'])
         $scope.user = {};
         $scope.showCreateInstructionOrPreview = true;
         $scope.datePublished = $scope.getDate(new Date());
+        $scope.move = 'one';
         
         $(document).ready(function() {
             accessCheck();
             $scope.hideAlertPublishInstruction();
             getTags();
             choiceOfAction();
-            //installMarkdown();
         });
         
         function getTags(){
@@ -106,7 +118,7 @@ angular.module("writeInstruction",['ngFileUpload'])
             });
             tags.forEach(function(item, i, tags) {
                 $scope.tags.push(item);
-            });       
+            });    
         }
         
         function installMarkdown(){
@@ -321,18 +333,23 @@ angular.module("writeInstruction",['ngFileUpload'])
                 var downloadURL = uploadTask.snapshot.downloadURL;
                 $scope.urlImage = downloadURL;
                 $('#DragAndDropImage').modal('hide');
-                if($scope.previewOrImage)
+                if($scope.previewOrImage){
                     drawImage($scope.editor);
+                    $scope.previewOrImage = false;
+                }
                 else{
                     $("#previewInput1").val($scope.urlImage);
                     $scope.previewInput1 = $scope.urlImage;
                 }
+                $scope.$apply();
             })            
         };
         
         function move(width){
-            var elem = document.getElementById("barUploadImage");   
+            var elem = document.getElementById("barUploadImage");  
+            var elem2 = document.getElementById("barUploadImage2");
             elem.style.width = width + '%'; 
+            elem2.style.width = width + '%'; 
         };  
         
         $scope.addTag = function(){
@@ -348,6 +365,8 @@ angular.module("writeInstruction",['ngFileUpload'])
         };         
 
         $scope.getFullPostPreview = function(){
+            $scope.prevMove = $scope.move;
+            $scope.move = 'five';
             var fullPreview = document.getElementById("FullPreview");
             var html  = $window.marked(simplemde.value());
             $scope.htmlSafe = $sce.trustAsHtml(html);  
@@ -359,30 +378,50 @@ angular.module("writeInstruction",['ngFileUpload'])
             $scope.showCreateInstructionOrPreview = true;
         };
         
-        $scope.publishInstruction = function(){
+        $scope.editInstruction = function(){
             $scope.hideAlertPublishInstruction();
             if(checkData()){
-                var obj = {
-                    idInstruction : $routeParams.idInstr,
-                    heading : $scope.headingInput1,
-                    shortDescription : $scope.shortDescriptionInput1,
-                    preview : $scope.previewInput1,
-                    subject : $scope.subjectSelect1,
-                    tags : $scope.selectedTags.join(),
-                    text : simplemde.value(),
-                    idUserFK : $scope.user.idUser
-                };
+                var obj = setData();
+                obj.idInstruction = $routeParams.idInstr;
                 $http.post('instruction/update',obj).then(function mySucces(response) {
-                    /*showAlertPublishInstruction();
-                    cleanData();
+                    showAlertPublishInstruction();
                     getTags();
-                    window.scrollTo(0,0);*/
+                    window.scrollTo(0,0);
                 }, function myError(response){
                     console.log(response);
                 });     
             }
             else
                 alert("Введите данные");
+        };
+
+        $scope.publishInstruction = function(){
+            if(checkData()){
+                $http.post('instruction/add',setData()).then(function mySucces(response) {
+                    $scope.move = 'six';
+                    cleanData();
+                    getTags();
+                }, function myError(response){
+                    console.log(response);
+                });
+            }
+        };
+        
+        function setData(){
+            var obj = {
+                heading : $scope.headingInput1,
+                shortDescription : $scope.shortDescriptionInput1,
+                preview : $scope.previewInput1,
+                subject : $scope.subjectSelect1,
+                tags : $scope.selectedTags.join(),
+                text : simplemde.value(),
+                idUserFK : $scope.user.idUser
+            };  
+            return obj;
+        }
+        
+        $scope.addNewInstruction = function(){
+            $scope.move = 'one';
         };
         
         function checkData(){
@@ -407,6 +446,29 @@ angular.module("writeInstruction",['ngFileUpload'])
             $('textarea').val("");
             installMarkdown();            
         }
+        
+        $scope.nextMove = function(move){
+            if(move == 'two'){
+                if($scope.headingInput1.length != 0 && $scope.shortDescriptionInput1.length != 0)
+                    $scope.move = move;
+            }
+            else if(move == 'three'){
+                if($scope.previewInput1.length != 0)
+                    $scope.move = move;
+            }
+            else if(move == 'four'){
+                if($scope.subjectSelect1.length != 0 || $scope.selectedTags.length == 0)
+                    $scope.move = move;
+            }
+        };
+        
+        $scope.previousMove = function(move){
+            $scope.move = move;
+        };
+        
+        $scope.backToMove = function(){
+            $scope.move = $scope.prevMove;
+        };
         
         $scope.hideAlertPublishInstruction = function(){
             var alertPublishInstruction = document.getElementById('alertPublishInstruction').style;
