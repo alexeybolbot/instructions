@@ -1,6 +1,7 @@
 var express = require('express');
 var randomstring = require("randomstring");
 var nodemailer = require('nodemailer');
+var CryptoJS = require("crypto-js");
 var router = express.Router();
 
 var mail = require('../public/json/mail');
@@ -87,11 +88,18 @@ router.get("/verification/:st", function(req,res){
 });
 
 router.post('/signIn', function(req, res) {     
-    con.query('SELECT * FROM user WHERE email="'+req.body.email+'" and password="'+req.body.password+'"', function(err, result) {
+    con.query('SELECT * FROM user WHERE email="'+req.body.email+'"', function(err, result) {
         if(result.length != 0){
-            if(result[0].status > 1)
-                sessionSetup(req, res, result);            
-            res.send(""+result[0].status);
+            if(result[0].status > 1){
+                var bytes  = CryptoJS.AES.decrypt(result[0].password.toString(), 'DFGf*/85fg_)fgfd');
+                var plaintext = bytes.toString(CryptoJS.enc.Utf8);
+                if(req.body.password == plaintext){
+                    sessionSetup(req, res, result);  
+                    res.send(""+result[0].status);
+                }
+                else
+                   res.send(400); 
+            }
         }else{
             res.send(400);
         };

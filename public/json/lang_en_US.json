@@ -82,5 +82,19 @@
     "SEARCH_BY_TAG" : "Search by tag",
     "SEARCH_BY_SUBJECT" : "Search by subject",
     "NUMBER_OF_PUBLICATIONS" : "Number of publications",
-    "OPEN" : "Open"
+    "OPEN" : "Open",
+    "AUTHORIZATION" : "Sign in",
+    "PASSWORD" : "Password",
+    "NOT_HAVE_ACCOUNT" : "Do not have an account?",
+    "REGISTRATION" : "Registration",
+    "REMEMBER_ME" : "Remember me",
+    "SIGN_IN_WITH" : "Sign in with",
+    "REMEMBER" : "Remember",
+    "DO_NOT_REMEMBER" : "Do not remember",
+    "RE_ENTER" : "Re-enter",
+    "SIGN_UP" : "Sign Up",
+    "CANCEL" : "Cancel",
+    "CONFIRM_REGISTRATION" : "The letter has been sent to your e-mail. Confirm registration",
+    "WRONG_EMAIL" : "Wrong Email",
+    "INVALID_INPUT_DATA" : "Invalid input data"
 }

@@ -1,0 +1,117 @@
+<div class="container authorization col-xs-12 col-sm-12 col-md-12 col-lg-6">
+    <div id="alertRegist">
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+            <button type="button" class="close" ng-click="hideAlertRegist()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            {{alertRegist | translate}}
+        </div>                
+    </div>
+    <div class="card">
+        <h4 class="card-header authorizationHeading">{{'AUTHORIZATION' | translate}}</h4>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-xs-6 col-sm-6 col-md-6 separator">
+                    <form role="form">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-user fa-lg" aria-hidden="true"></i></span>
+                            <input id="signInEmail" type="text" name="email" class="form-control" placeholder="email" />
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-unlock-alt fa-lg" aria-hidden="true"></i></span>
+                            <input name="password" id="signInPassword" type="password" class="form-control" placeholder="{{'PASSWORD' | translate}}" required />
+                        </div>
+                        <p>
+                            {{'NOT_HAVE_ACCOUNT' | translate}} <a ng-click="showRegist()" data-toggle="modal" data-target="#modalRegist"><span class="linkRegist">{{'REGISTRATION' | translate}}</span></a>
+                        </p>
+                        <input type="checkbox" ng-model="rememberMe" id="checkRememberMe"/> {{'REMEMBER_ME' | translate}}
+                        <br>
+                        <button class="btn btn-outline-success btnSignIn" ng-click="signIn()"><i class="fa fa-sign-in"></i> {{'SIGN_IN' | translate}}</button> 
+                    </form>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6 soc">
+                    <a class="btn btn-block btn-social btn-vk" ng-click="tuneLink('authSocial/auth/vkontakte')">
+                        <span class="fa fa-vk"></span> {{'SIGN_IN_WITH' | translate}} VK
+                    </a>
+                    <a class="btn btn-block btn-social btn-facebook" href="/auth/facebook">
+                        <span class="fa fa-facebook"></span>{{'SIGN_IN_WITH' | translate}} Facebook
+                    </a>
+                    <a class="btn btn-block btn-social btn-twitter"  ng-click="tuneLink('authSocial/twitter/login')">
+                        <span class="fa fa-twitter"></span> {{'SIGN_IN_WITH' | translate}} Twitter
+                    </a>      
+                </div>                         
+            </div>                   
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal RememberMe-->
+<div class="modal fade" id="modalRememberMe" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">{{'REMEMBER_ME' | translate}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>       
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-primary" ng-click="auth(true)">{{'REMEMBER' | translate}}</button>
+                <button type="button" class="btn btn-outline-danger" ng-click="auth(false)">{{'DO_NOT_REMEMBER' | translate}}</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Registration-->
+<div class="modal fade" id="modalRegist" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">{{'REGISTRATION' | translate}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group row">
+                        <label for="inputFirstName" class="col-sm-2 col-form-label">{{'FIRST_NAME' | translate}}</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputFirstName" placeholder="{{'FIRST_NAME' | translate}}">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputLastName" class="col-sm-2 col-form-label">{{'LAST_NAME' | translate}}</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputLastName" placeholder="{{'LAST_NAME' | translate}}">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
+                        <div class="col-sm-10">
+                            <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputPassword" class="col-sm-2 col-form-label">{{'PASSWORD' | translate}}</label>
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control" id="inputPassword" placeholder="{{'PASSWORD' | translate}}">
+                        </div>
+                    </div> 
+                    <div class="form-group row">
+                        <label for="inputPassword2" class="col-sm-2 col-form-label">{{'PASSWORD' | translate}}</label>
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control" id="inputPassword2" placeholder="{{'RE_ENTER' | translate}}">
+                        </div>
+                    </div>             
+                  </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-primary" ng-click="regist()">{{'SIGN_UP' | translate}}</button>
+                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">{{'CANCEL' | translate}}</button>
+            </div>
+        </div>
+    </div>
+</div>

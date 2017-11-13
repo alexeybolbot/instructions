@@ -1,6 +1,7 @@
 var app = angular.module('indexApp', [
     "ngRoute",
     "pascalprecht.translate",
+    "authorizationApp",
     "instructions",
     "writeInstruction",
     "getInstruction",
@@ -42,6 +43,9 @@ app.config(function($routeProvider,$translateProvider) {
     }).when("/users",{
         templateUrl : "/html/users.html",
         controller : "usersCtrl"
+    }).when("/authorization",{
+        templateUrl : "/html/authorization.html",
+        controller : "authorizationCtrl"
     });
     
     $translateProvider.registerAvailableLanguageKeys(['ru_BY', 'en_US'], {
@@ -167,6 +171,7 @@ app.config(function($routeProvider,$translateProvider) {
     $scope.switchLanguage = function(key) {
         $translate.use(key);
         document.getElementById(key).checked = true;
+        $scope.language = key;
         if($scope.checkAuth)
             $http.post('users/saveLanguage', {id:$rootScope.data.idUser, language:key});
         else

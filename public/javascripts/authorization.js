@@ -1,7 +1,7 @@
 angular.module('authorizationApp', [])
     .controller('authorizationCtrl', function($scope, $http) {
         
-        $scope.alertRegist = "Письмо отправлено на Вашу почту. Подтвердите регистрацию";
+        $scope.alertRegist = "CONFIRM_REGISTRATION";
         
         
         $(document).ready(function() {
@@ -32,25 +32,29 @@ angular.module('authorizationApp', [])
             window.location = "http://localhost:3000/"+$scope.link;
         };
         
+        $scope.showRegist = function(){
+            $('#modalRegist').modal('show');
+        };
+        
         $scope.regist = function(){
             var firstName = $('#inputFirstName').val();
             var lastName = $('#inputLastName').val();
             var email = $('#inputEmail').val();
+            var encrypted = CryptoJS.AES.encrypt($('#inputPassword').val(), "DFGf*/85fg_)fgfd");
             var password = $('#inputPassword').val();
             var password2 = $('#inputPassword2').val();
-                       
             var resultDataCheckingRegist = dataCheckingRegist(firstName, lastName, email, password, password2);
             if(resultDataCheckingRegist)
-                sendingOfDataForRegistration(firstName, lastName, email, password);
+                sendingOfDataForRegistration(firstName, lastName, email, encrypted.toString());
         };
         
         function dataCheckingRegist(firstName, lastName, email, password, password2){
             if(firstName == "" || lastName == "" || email == "" || password == "" || password2 == ""){
-                alert("Введите данные");
+                alert("Iput data / Введите данные");
                 return false;
             }
             else if(password != password2){
-                alert("Пароль не совпадает");
+                alert("Password does not match / Пароль не совпадает");
                 return false;
             }
             return true;
@@ -62,17 +66,17 @@ angular.module('authorizationApp', [])
                 tuningTextAlertRegist(response);
                 showAlertRegist();
             }, function myError(response){
-                setUpAndShowAlertRegist("Неверный Email");
+                setUpAndShowAlertRegist("WRONG_EMAIL");
             });            
         };
         
         function tuningTextAlertRegist(response){
-            $scope.alertRegist = (response.data != "OK") ? "Пароль занят" : "Письмо отправлено на Вашу почту. Подтвердите регистрацию";         
+            $scope.alertRegist = (response.data != "OK") ? "WRONG_EMAIL" : "CONFIRM_REGISTRATION";         
         };
        
         $scope.signIn = function(){
             var email = $('#signInEmail').val();
-            var password = $('#signInPassword').val();     
+            var password = $('#signInPassword').val();   
             var resultDataCheckingSignIn = dataCheckingSignIn(email, password);
             if(resultDataCheckingSignIn)
                 sendingOfDataForSignIn(email, password);
@@ -80,7 +84,7 @@ angular.module('authorizationApp', [])
         
         function dataCheckingSignIn(email, password){
             if(email == "" || password == ""){
-                alert("Введите данные");
+                alert("Iput data / Введите данные");
                 return false;
             }
             return true;
@@ -89,14 +93,14 @@ angular.module('authorizationApp', [])
         function sendingOfDataForSignIn(email, password){
             $http.post('users/signIn',{email:email, password:password}).then(function mySucces(response) {
                 if(response.data == 0) 
-                    setUpAndShowAlertRegist("Потдвердите регистрацию на вашей почте");
+                    setUpAndShowAlertRegist("CONFIRM_REGISTRATION");
                 else if(response.data == 2){
                     if($scope.rememberMe)
                         $http.post('session/rememberMe');
                 }
                 window.location = "http://localhost:3000/";
             }, function myError(response) {
-                setUpAndShowAlertRegist("Неверно введены данные");
+                setUpAndShowAlertRegist("INVALID_INPUT_DATA");
             });            
         };
         

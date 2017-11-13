@@ -128,3 +128,23 @@ hr{
 .headings:hover{
     color: rgba(255,255,255,.75);
 }
+
+.card-header{
+    background: #191919;
+}
+
+.card-body{
+    background: rgb(35, 35, 35);
+}
+
+.modal-header{
+    background: #191919;
+}
+
+.modal-body{
+    background: rgb(35, 35, 35);
+}
+
+.modal-footer{
+    background: rgb(35, 35, 35);
+}

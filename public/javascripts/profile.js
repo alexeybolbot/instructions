@@ -58,9 +58,9 @@ angular.module("profile",[])
                 $scope.user = response.data[0];
                 $scope.user.familyName = $scope.user.familyName.split(' ');
                 $scope.user.chosenImg = $scope.user.photo;
-                getInstructionsUser(response);
                 instalinPlaceEditing($scope.user, 'userFirstName', 0);
-                instalinPlaceEditing($scope.user, 'userLastName', 1);
+                instalinPlaceEditing($scope.user, 'userLastName', 1);                
+                getInstructionsUser(response);
             });            
         }
         

@@ -41,6 +41,7 @@ textarea, input, button{
 }
 
 .inputGroupSearch{
+    margin-top: 10px;
     height: 30px;
 }
 
@@ -884,4 +885,17 @@ table{
     margin: 0;
     padding: 0;
     font-size: 22px;    
+}
+
+.linkRegist{
+    color: blue;
+}
+
+.authorizationHeading{
+    vertical-align: middle
+}
+
+.collapsed-form-FullPreview a{
+    cursor: pointer;
+    text-decoration: none;    
 }

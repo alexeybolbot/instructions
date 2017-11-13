@@ -81,5 +81,19 @@
     "SEARCH_BY_TAG" : "Поиск по тегу",
     "SEARCH_BY_SUBJECT" : "Поиск по теме",
     "NUMBER_OF_PUBLICATIONS" : "Количество публикаций",
-    "OPEN" : "Открыть"    
+    "OPEN" : "Открыть",
+    "AUTHORIZATION" : "Авторизация на сайте"    ,
+    "PASSWORD" : "Пароль",
+    "NOT_HAVE_ACCOUNT" : "У вас нет аккаунта?",
+    "REGISTRATION" : "Регистрация",
+    "REMEMBER_ME" : "Запомнить меня",
+    "SIGN_IN_WITH" : "Войти с помощью",
+    "REMEMBER" : "Запомнить",
+    "DO_NOT_REMEMBER" : "Не запоминать",
+    "RE_ENTER" : "Введите ещё раз",
+    "SIGN_UP" : "Зарегистрироваться",
+    "CANCEL" : "Отмена",
+    "CONFIRM_REGISTRATION" : "Письмо отправлено на Вашу почту. Подтвердите регистрацию",
+    "WRONG_EMAIL" : "Неверный Email",
+    "INVALID_INPUT_DATA" : "Неверно введены данные"
 }

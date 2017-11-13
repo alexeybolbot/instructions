@@ -5,9 +5,11 @@
         <meta charset="UTF-8">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="stylesheets/authorization.css">
+        <link rel="stylesheet" href="stylesheets/bootstrap-social-gh-pages/bootstrap-social.css">        
         <link rel="stylesheet" href="stylesheets/editable.css">
         <link rel="stylesheet" href={{style}}>
-        <link rel="stylesheet" href="stylesheets/generalStyle.css">
+        <link rel="stylesheet" href="stylesheets/generalStyle.css">        
         <link rel="stylesheet" href="https://code.cdn.mozilla.net/fonts/fira.css">
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
@@ -30,8 +32,11 @@
         <script src="https://rawgithub.com/angular-translate/bower-angular-translate/master/angular-translate.min.js"></script>
         <script src="https://rawgithub.com/angular-translate/bower-angular-translate-storage-cookie/master/angular-translate-storage-cookie.js"></script>
         <script src="https://rawgithub.com/angular-translate/bower-angular-translate-loader-static-files/master/angular-translate-loader-static-files.js"></script>             
+        <script src="javascripts/lib/aes.js"></script>
+        <script src="javascripts/lib/md5.js"></script>
         <script src="javascripts/index.js"></script>
         <script src="javascripts/instructions.js"></script>
+        <script src="javascripts/authorization.js"></script>
         <script src="javascripts/writeInstruction.js"></script>
         <script src="javascripts/getInstruction.js"></script>
         <script src="javascripts/fullTextSearch.js"></script>
@@ -92,7 +97,7 @@
                         </div>
                     </li>
                     <div class="btn-group">
-                        <a class="signIn" href="/authorization" ng-show="!checkAuth">{{'SIGN_IN' | translate}}</a>
+                        <a class="signIn" href="#!authorization" ng-show="!checkAuth">{{'SIGN_IN' | translate}}</a>
                         <a href="#!write/write/{{data.idUser}}"><button type="button" class="btn btn-outline-info navwrite mr-sm-2" ng-show="checkAuth">{{'WRITE' | translate}}</button></a>
                         <img src="{{data.photo}}" class="navicon" ng-show="checkAuth" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="{{data.familyName}}">
                         <div class="dropdown-menu night-l navbarDropdownProfile">                            
