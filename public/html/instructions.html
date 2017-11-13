@@ -1,4 +1,11 @@
 <div class="container cont">
+    <div ng-show="searchPanel" class="row">
+        <div class="col-md-9">
+            <span ng-show="searchPanelTags" class="searchBy">{{'SEARCH_BY_TAG' | translate}}: {{name}} <a><i class="fa fa-times" aria-hidden="true" ng-click="closeSearch()"></i></a></span>
+            <span ng-show="searchPanelSubject" class="searchBy">{{'SEARCH_BY_SUBJECT' | translate}}: {{name | translate}} <a><i class="fa fa-times" aria-hidden="true" ng-click="closeSearch()"></i></a></span>
+        </div>
+        <br><br>
+    </div>
     <div class="row">
         <div class="col-md-9">
             <div class="tabs-menu">
@@ -32,6 +39,20 @@
                 <p>{{i.shortDescription}}</p>
                 <a href="#!instruction/{{i.idInstruction}}"><button type="button" class="btn btn-outline-info">{{'READ_MORE' | translate}} <i class="fa fa-long-arrow-right" aria-hidden="true"></i></button></a>
                 <br><br>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="tabs-menu">
+                &nbsp;
+            </div>
+            <hr>
+            <div class="list-group listSubjects">
+                <a class="list-group-item " ng-click="showPublicationsBySubject('ELECTRONICS')"><span><i class="fa fa-mobile fa-fw" aria-hidden="true"></i>&nbsp; {{'ELECTRONICS' | translate}}</span></a>
+                <a class="list-group-item " ng-click="showPublicationsBySubject('COMPUTERS')"><span><i class="fa fa-laptop fa-fw" aria-hidden="true"></i>&nbsp; {{'COMPUTERS' | translate}}</span></a>
+                <a class="list-group-item " ng-click="showPublicationsBySubject('APPLIANCES')"><span><i class="fa fa-shower fa-fw" aria-hidden="true"></i>&nbsp; {{'APPLIANCES' | translate}}</span></a>
+                <a class="list-group-item " ng-click="showPublicationsBySubject('CONSTRUCTION_AND_REPAIR')"><span><i class="fa fa-building fa-fw" aria-hidden="true"></i>&nbsp; {{'CONSTRUCTION_AND_REPAIR' | translate}}</span></a>
+                <a class="list-group-item " ng-click="showPublicationsBySubject('HOUSE_AND_GARDEN')"><span><i class="fa fa-home fa-fw" aria-hidden="true"></i>&nbsp; {{'HOUSE_AND_GARDEN' | translate}}</span></a>
+                <a class="list-group-item " ng-click="showPublicationsBySubject('AUTO_MOTO')"><span><i class="fa fa-car fa-fw" aria-hidden="true"></i>&nbsp; {{'AUTO_MOTO' | translate}}</span></a>
             </div>
         </div>
     </div>

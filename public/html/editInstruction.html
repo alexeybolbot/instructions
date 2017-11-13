@@ -21,9 +21,13 @@
             <div class="description">{{'ABOUT_THAT_PREVIEW' | translate}}</div>
             <br>
             <label>{{'SUBJECT' | translate}}:</label>
-            <select class="form-control" ng-model="subjectSelect1">
-                <option>{{'ELECTRONICS' | translate}}</option>
-                <option>Досуг и быт</option>
+            <select class="form-control" ng-model="subjectSelect1" id="selectSubject">
+                <option value="ELECTRONICS">{{'ELECTRONICS' | translate}}</option>
+                <option value="COMPUTERS">{{'COMPUTERS' | translate}}</option>
+                <option value="APPLIANCES">{{'APPLIANCES' | translate}}</option>
+                <option value="CONSTRUCTION_AND_REPAIR">{{'CONSTRUCTION_AND_REPAIR' | translate}}</option>
+                <option value="HOUSE_AND_GARDEN">{{'HOUSE_AND_GARDEN' | translate}}</option>
+                <option value="AUTO_MOTO">{{'AUTO_MOTO' | translate}}</option>
             </select>
             <br>    
             <label>{{'TAGS' | translate}}:</label>

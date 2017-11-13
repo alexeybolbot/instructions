@@ -1,0 +1,12 @@
+<div class="container cont">
+    <div class="row tagsCont">
+        <div class="col-md-6 listTagsProfile">
+            <h3 class="tagsHeading">{{'TAGS' | translate}}</h3>
+            <br>
+            <span ng-show="!countTags" class="searchNote">{{'NONE' | translate}}</span>
+            <span ng-repeat="tag in tags">
+                <a href="#!instructions/tag/{{tag}}"><span class="tagsProfile">{{tag}}</span></a>
+            </span>                    
+        </div>        
+    </div>
+</div>

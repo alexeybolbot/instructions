@@ -67,6 +67,7 @@ angular.module("writeInstruction",['ngFileUpload'])
             $scope.shortDescriptionInput1 = data.shortDescription;
             $scope.previewInput1 = data.preview;
             $scope.subjectSelect1 = data.subject;
+            $('#selectSubject').val(data.subject);
             var tags = data.tags.split(',');
             tags.forEach(function(item, i, arr) {
                 $scope.selectedTags.push(item);
@@ -412,7 +413,7 @@ angular.module("writeInstruction",['ngFileUpload'])
                 heading : $scope.headingInput1,
                 shortDescription : $scope.shortDescriptionInput1,
                 preview : $scope.previewInput1,
-                subject : $scope.subjectSelect1,
+                subject : $scope.selectSubject,
                 tags : $scope.selectedTags.join(),
                 text : simplemde.value(),
                 idUserFK : $scope.user.idUser
@@ -432,6 +433,7 @@ angular.module("writeInstruction",['ngFileUpload'])
                 $scope.selectedTags.length == 0 ||
                 simplemde.value().length == 0)
                 return false;
+            $scope.selectSubject = $('#selectSubject').val();
             return true;
         }
         

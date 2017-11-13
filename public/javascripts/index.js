@@ -6,7 +6,8 @@ var app = angular.module('indexApp', [
     "getInstruction",
     "fullTextSearch",
     "profile",
-    "adminPanel"
+    "adminPanel",
+    "tags"
 ]);
 
 app.config(function($routeProvider,$translateProvider) {
@@ -31,9 +32,12 @@ app.config(function($routeProvider,$translateProvider) {
     }).when("/instructions/:hub/:name", {
         templateUrl : "/html/instructions.html",
         controller : "instructionsCtrl"
-    }).when("/admin", {
+    }).when("/admin",{
         templateUrl : "/html/adminPanel.html",
         controller : "adminCtrl"
+    }).when("/tags",{
+        templateUrl : "/html/tags.html",
+        controller : "tagsCtrl"
     });
     
     $translateProvider.registerAvailableLanguageKeys(['ru_BY', 'en_US'], {

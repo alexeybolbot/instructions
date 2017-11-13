@@ -104,3 +104,15 @@ hr{
 .filterAndSortPanel{
     border: 1px solid #333333;
 }
+
+.listSubjects a{
+    background: #1F1F1F;
+}
+
+.listSubjects span{
+    color: #868e96;
+}
+
+.listSubjects span:hover{
+    color: #BDBDBD;
+}

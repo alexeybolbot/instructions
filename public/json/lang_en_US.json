@@ -73,5 +73,12 @@
     "STEP_4" : "Step : Text",
     "PUBLISH" : "Publish",
     "PUBLICATION_ADDED" : "The publication has been added.",
-    "ADD_NEW_INSTRUCTIONS" : "Add new instructions"
+    "ADD_NEW_INSTRUCTIONS" : "Add new instructions",
+    "COMPUTERS" : "Computers",
+    "APPLIANCES" : "Household appliances",
+    "CONSTRUCTION_AND_REPAIR" : "Construction and repair",
+    "HOUSE_AND_GARDEN" : "House and garden",
+    "AUTO_MOTO" : "Auto & Moto",
+    "SEARCH_BY_TAG" : "Search by tag",
+    "SEARCH_BY_SUBJECT" : "Search by subject"
 }

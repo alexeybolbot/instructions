@@ -3,6 +3,10 @@
 angular.module("instructions",[])
     .controller('instructionsCtrl',function($rootScope, $routeParams, $scope, $http){
         
+        $scope.searchPanel = false;
+        $scope.searchPanelTags = false;
+        $scope.searchPanelSubject = false;
+        
         function getInstructions(){
             $http.post('instruction/',{hub:$scope.hub, tab:$scope.tab, name:$scope.name}).then(function mySucces(response) {
                 $scope.instructions = response.data.map(function(instruction) {
@@ -41,12 +45,38 @@ angular.module("instructions",[])
         }
         
         $scope.showPublicationsByTag = function(tag){
+            $scope.searchPanel = true;
+            $scope.searchPanelTags = true;
+            $scope.searchPanelSubject = false;            
             $rootScope.hub = "tag";
             $rootScope.tab = "last";
             $rootScope.name = tag;
             tuningStyleTabs("last");
             getInstructions();
             window.scrollTo(0,0);
+        };
+        
+        $scope.showPublicationsBySubject = function(subject){
+            $scope.searchPanel = true;
+            $scope.searchPanelTags = false;
+            $scope.searchPanelSubject = true; 
+            $rootScope.hub = "subject";
+            $rootScope.tab = "last";
+            $rootScope.name = subject;
+            tuningStyleTabs("last");
+            getInstructions();
+            window.scrollTo(0,0);
+        };   
+        
+        $scope.closeSearch = function(){
+            $scope.searchPanel = false;
+            $scope.searchPanelTags = false;
+            $scope.searchPanelSubject = false;            
+            $rootScope.hub = "all";
+            $rootScope.tab = "last";
+            $rootScope.name = ""; 
+            getInstructions();
+            window.scrollTo(0,0);            
         };
         
 });

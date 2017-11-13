@@ -60,3 +60,11 @@ table, tr, td, th{
 .filterAndSortPanel{
     border: 1px solid rgba(0,0,0,.1);
 }
+
+.listSubjects span{
+    color: #548eaa;
+}
+
+.listSubjects span:hover{
+    color: #30A2D5;
+}

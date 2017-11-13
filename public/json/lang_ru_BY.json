@@ -72,5 +72,12 @@
     "STEP_4" : "Шаг 4. Текст",
     "PUBLISH" : "Опубликовать",
     "PUBLICATION_ADDED" : "Публикация добавлена.",
-    "ADD_NEW_INSTRUCTIONS" : "Добавить новую инструкцию"
+    "ADD_NEW_INSTRUCTIONS" : "Добавить новую инструкцию",
+    "COMPUTERS" : "Компьютеры",
+    "APPLIANCES" : "Бытовая техника",
+    "CONSTRUCTION_AND_REPAIR" : "Стройка и ремонт",
+    "HOUSE_AND_GARDEN" : "Дом и сад",
+    "AUTO_MOTO" : "Авто и мото",
+    "SEARCH_BY_TAG" : "Поиск по тегу",
+    "SEARCH_BY_SUBJECT" : "Поиск по теме"    
 }

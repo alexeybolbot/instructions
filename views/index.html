@@ -37,13 +37,9 @@
         <script src="javascripts/fullTextSearch.js"></script>
         <script src="javascripts/profile.js"></script>
         <script src="javascripts/adminPanel.js"></script>
+        <script src="javascripts/tags.js"></script>
     </head>
-    <body class="night">
-        
- <!-- <h1 translate>HEADLINE</h1>{{'HEADLINE' | translate}}
-  <button ng-click="switchLanguage('de_DE')" translate="LANG_DE_DE"></button>
-  <button ng-click="switchLanguage('en_US')" translate="LANG_EN_US"></button>   
- -->       
+    <body class="night"> 
         <nav class="navbar navbar-expand-md navbar-{{styleNavbar}} navbarIndex night-l">
             <div class="container">
                 <a class="navbar-brand" href="/">
@@ -60,6 +56,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#">{{'USERS' | translate}}</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#!tags">{{'TAGS' | translate}}</a>
+                        </li>                        
                     </ul>                   
                     <div ng-show="showSearch" class="input-group inputGroupSearch mr-sm-2">
                         <button class="search"><a href="#!fullTextSearch/{{dataOfSearch}}"><i class="fa fa-search settings btnSearch" aria-hidden="true"></i></a></button>
