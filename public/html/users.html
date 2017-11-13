@@ -1,0 +1,38 @@
+<div class="container cont">
+    <div class="row tagsCont adminPanel">
+        <div class="col-md-12">
+            <h3 class="tagsHeading">{{'USERS' | translate}}</h3>
+            <br><br>
+            <div class="input-group inputGroupSearch">
+                <span class="ikonSearchAdminPanel"><i class="fa fa-search settings" aria-hidden="true"></i></span>
+                <input type="text" placeholder="{{'SEARCH_USER' | translate}}" class="search inputSearch" ng-model="searchFilter.familyName">
+            </div>            
+            <br>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">{{'USER' | translate}}</th>
+                  <th scope="col" class="columnStatus" ng-click="sort('NP')">
+                      {{'NUMBER_OF_PUBLICATIONS' | translate}}
+                      <span class="sortorder" ng-show="propertyName === 'NP'" ng-class="{reverse: reverse}"></span>
+                  </th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="user in (filteredItems = (users | filter:searchFilter))" class="listUsersAdmin">
+                    <th scope="col">{{$index+1}}</th>
+                    <td><a href="#!profile/{{user.idUser}}" class="avatarAndFullName"><img src="{{user.photo}}"> <span class="listFullName">{{user.familyName}}</span></a></td>
+                    <td>{{user.countInstructions}}</td>
+                    <td>
+                        <div class="btn-group actionInstructionsProfile" data-toggle="buttons">
+                            <a href="#!profile/{{user.idUser}}"><button type="button" class="btn btn-outline-primary btnActionInstr" >{{'OPEN' | translate}}</button></a>
+                        </div>                      
+                    </td>
+                </tr>
+              </tbody> 
+            </table>                               
+        </div>        
+    </div>
+</div>

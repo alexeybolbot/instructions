@@ -38,26 +38,27 @@
         <script src="javascripts/profile.js"></script>
         <script src="javascripts/adminPanel.js"></script>
         <script src="javascripts/tags.js"></script>
+        <script src="javascripts/users.js"></script>
     </head>
     <body class="night"> 
         <nav class="navbar navbar-expand-md navbar-{{styleNavbar}} navbarIndex night-l">
             <div class="container">
                 <a class="navbar-brand" href="/">
-                    <b class="icon">i</b> Instructions
+                    <b class="icon">i</b> <span class="headingsBrand">Instructions</span>
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarText">
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="#">{{'PUBLICATIONS' | translate}}<span class="sr-only">(current)</span></a>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" ><span class="headings">{{'PUBLICATIONS' | translate}}</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">{{'USERS' | translate}}</a>
+                            <a class="nav-link" href="#!users"><span class="headings">{{'USERS' | translate}}</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#!tags">{{'TAGS' | translate}}</a>
+                            <a class="nav-link" href="#!tags"><span class="headings">{{'TAGS' | translate}}</span></a>
                         </li>                        
                     </ul>                   
                     <div ng-show="showSearch" class="input-group inputGroupSearch mr-sm-2">

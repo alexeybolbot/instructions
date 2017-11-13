@@ -80,5 +80,7 @@
     "HOUSE_AND_GARDEN" : "House and garden",
     "AUTO_MOTO" : "Auto & Moto",
     "SEARCH_BY_TAG" : "Search by tag",
-    "SEARCH_BY_SUBJECT" : "Search by subject"
+    "SEARCH_BY_SUBJECT" : "Search by subject",
+    "NUMBER_OF_PUBLICATIONS" : "Number of publications",
+    "OPEN" : "Open"
 }

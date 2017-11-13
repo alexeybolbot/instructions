@@ -116,3 +116,15 @@ hr{
 .listSubjects span:hover{
     color: #BDBDBD;
 }
+
+.headingsBrand{
+    color: #fff;
+}
+
+.headings{
+    color: rgba(255,255,255,.5);
+}
+
+.headings:hover{
+    color: rgba(255,255,255,.75);
+}

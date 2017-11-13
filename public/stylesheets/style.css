@@ -68,3 +68,15 @@ table, tr, td, th{
 .listSubjects span:hover{
     color: #30A2D5;
 }
+
+.headingsBrand{
+    color: rgba(0,0,0,.9);
+}
+
+.headings{
+    color: rgba(0,0,0,.5);
+}
+
+.headings:hover{
+        color: rgba(0,0,0,.7);
+}

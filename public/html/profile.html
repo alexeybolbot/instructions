@@ -51,7 +51,7 @@
                         </select>
                         <select class="custom-select selectFilter" ng-model="selectSubject" ng-change="filterInstr('Subject', selectSubject)">
                             <option value="">{{'BY_SUBJECT' | translate}}</option>
-                            <option value="{{subject}}" ng-repeat="subject in subjects">{{subject}}</option>
+                            <option value="{{subject}}" ng-repeat="subject in subjects">{{subject | translate}}</option>
                         </select>
                         <span class="indentation"></span>
                         {{'SORTING' | translate}}:

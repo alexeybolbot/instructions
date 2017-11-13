@@ -79,5 +79,7 @@
     "HOUSE_AND_GARDEN" : "Дом и сад",
     "AUTO_MOTO" : "Авто и мото",
     "SEARCH_BY_TAG" : "Поиск по тегу",
-    "SEARCH_BY_SUBJECT" : "Поиск по теме"    
+    "SEARCH_BY_SUBJECT" : "Поиск по теме",
+    "NUMBER_OF_PUBLICATIONS" : "Количество публикаций",
+    "OPEN" : "Открыть"    
 }

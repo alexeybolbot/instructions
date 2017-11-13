@@ -7,7 +7,8 @@ var app = angular.module('indexApp', [
     "fullTextSearch",
     "profile",
     "adminPanel",
-    "tags"
+    "tags",
+    "users"
 ]);
 
 app.config(function($routeProvider,$translateProvider) {
@@ -38,6 +39,9 @@ app.config(function($routeProvider,$translateProvider) {
     }).when("/tags",{
         templateUrl : "/html/tags.html",
         controller : "tagsCtrl"
+    }).when("/users",{
+        templateUrl : "/html/users.html",
+        controller : "usersCtrl"
     });
     
     $translateProvider.registerAvailableLanguageKeys(['ru_BY', 'en_US'], {
